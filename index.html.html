@@ -1,0 +1,2205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SafeCircle</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#12312F;
+  --ink-soft:#4A6B69;
+  --paper:#FBFCFC;
+  --surface:#FFFFFF;
+  --sunk:#EFF5F4;
+  --line:#D8E6E4;SAFE CIRCLE
+Uviwe Booi<uviwebooi95@gmail.com>
+
+Uviwe Booi
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SafeCircle</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#12312F;
+  --ink-soft:#4A6B69;
+  --paper:#FBFCFC;
+  --surface:#FFFFFF;
+  --sunk:#EFF5F4;
+  --line:#D8E6E4;
+  --deep:#0C2B2A;
+  --teal:#0A7A7F;
+  --mint:#08B98A;
+  --amber:#B2701A;
+  --amber-bg:#FDF4E6;
+  --alert:#C0392B;
+  --radius:14px;
+  --shadow:0 2px 4px rgba(12,43,42,.04), 0 12px 28px rgba(12,43,42,.07);
+  --serif:"Newsreader", Georgia, "Times New Roman", serif;
+  --sans:"Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --ink:#E6F2F0; --ink-soft:#9BB8B5; --paper:#08201F; --surface:#0E2B2A;
+    --sunk:#133736; --line:#1E4544; --deep:#061715; --teal:#2FA6A4;
+    --mint:#25C79A; --amber:#E0A94A; --amber-bg:#2A2214;
+    --shadow:0 2px 4px rgba(0,0,0,.2), 0 12px 28px rgba(0,0,0,.35);
+  }
+}
+:root[data-theme="dark"]{
+  --ink:#E6F2F0; --ink-soft:#9BB8B5; --paper:#08201F; --surface:#0E2B2A;
+  --sunk:#133736; --line:#1E4544; --deep:#061715; --teal:#2FA6A4;
+  --mint:#25C79A; --amber:#E0A94A; --amber-bg:#2A2214;
+  --shadow:0 2px 4px rgba(0,0,0,.2), 0 12px 28px rgba(0,0,0,.35);
+}
+
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+body{
+  background:var(--paper);
+  color:var(--ink);
+  font-family:var(--sans);
+  font-size:16px;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3{font-family:var(--serif);font-weight:600;line-height:1.2;margin:0;letter-spacing:-.01em;}
+p{margin:0 0 1rem;}
+a{color:var(--teal);}
+button{font-family:inherit;font-size:inherit;cursor:pointer;}
+:focus-visible{outline:3px solid var(--mint);outline-offset:2px;border-radius:6px;}
+.skip{position:absolute;left:12px;top:-60px;z-index:100;background:var(--ink,#0B2B2A);color:#fff;padding:10px 16px;border-radius:8px;font-weight:600;text-decoration:none;}
+.skip:focus{top:12px;}
+.btn:disabled{opacity:.5;cursor:not-allowed;filter:none;}
+@media (prefers-reduced-motion: reduce){
+  *{animation-duration:.01ms !important;transition-duration:.01ms !important;}
+}
+
+/* ---------- Layout ---------- */
+.wrap{max-width:760px;margin:0 auto;padding:0 32px;}
+.shell{display:flex;align-items:flex-start;}
+
+.sidebar{
+  width:250px;flex:none;position:sticky;top:0;height:100vh;overflow-y:auto;
+  background:var(--surface);border-right:1px solid var(--line);
+  display:flex;flex-direction:column;padding:22px 18px;
+}
+.brand{display:flex;align-items:center;gap:10px;font-family:var(--serif);font-size:1.2rem;font-weight:600;padding:0 4px;}
+.brand-mark{
+  width:28px;height:28px;border-radius:50%;
+  background:var(--teal);display:grid;place-items:center;flex:none;
+}
+.brand-mark svg{width:15px;height:15px;stroke:#fff;fill:none;stroke-width:2;}
+
+.side-exit{
+  margin-top:16px;background:var(--deep);color:#fff;border:0;width:100%;
+  padding:11px 14px;border-radius:10px;font-weight:600;font-size:.85rem;text-align:left;
+  display:flex;align-items:center;gap:9px;
+}
+.side-exit svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:2;flex:none;}
+.side-exit:hover{background:var(--alert);}
+
+.side-nav{list-style:none;margin:22px 0 0;padding:0;display:flex;flex-direction:column;gap:2px;}
+.tab{
+  background:none;border:0;text-align:left;width:100%;
+  padding:10px 12px;border-radius:10px;
+  color:var(--ink-soft);font-weight:500;font-size:.92rem;
+  display:flex;align-items:center;gap:10px;
+}
+.tab:hover{background:var(--sunk);color:var(--ink);}
+.tab[aria-selected="true"]{background:var(--sunk);color:var(--teal);font-weight:600;}
+.tab .dot-ico{width:6px;height:6px;border-radius:50%;background:currentColor;opacity:.5;flex:none;}
+
+.side-account{margin-top:auto;padding-top:18px;border-top:1px solid var(--line);}
+.auth-btns{display:flex;flex-direction:column;gap:8px;}
+.auth-btns .btn{width:100%;text-align:center;padding:10px 14px;}
+.account-chip{display:flex;align-items:center;gap:10px;}
+.account-chip .avatar{width:34px;height:34px;font-size:.85rem;}
+.account-info{flex:1;min-width:0;}
+.account-info strong{display:block;font-size:.86rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.account-info span{display:block;font-size:.74rem;color:var(--ink-soft);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.account-out{border:0;background:none;color:var(--ink-soft);font-size:.76rem;text-decoration:underline;padding:0;flex:none;}
+
+.content{flex:1;min-width:0;}
+.topbar{
+  display:none;position:sticky;top:0;z-index:60;
+  background:var(--surface);border-bottom:1px solid var(--line);
+  align-items:center;gap:14px;padding:12px 20px;
+}
+.hamburger{background:none;border:0;width:30px;height:22px;display:flex;flex-direction:column;justify-content:space-between;flex:none;padding:0;}
+.hamburger span{display:block;height:2px;width:100%;background:var(--ink);border-radius:1px;}
+.topbar .brand{font-size:1.05rem;}
+.topbar .side-exit{width:auto;margin:0 0 0 auto;padding:8px 14px;font-size:.8rem;}
+#scrim{position:fixed;inset:0;background:rgba(8,32,31,.4);z-index:70;display:none;}
+#scrim.on{display:block;}
+
+@media (max-width:880px){
+  .sidebar{
+    position:fixed;top:0;left:0;z-index:80;
+    transform:translateX(-100%);transition:transform .22s ease;
+    box-shadow:var(--shadow);
+  }
+  .sidebar.open{transform:translateX(0);}
+  .topbar{display:flex;}
+  .wrap{padding:0 20px;}
+}
+
+main{padding:32px 0 40px;}
+
+/* ---------- Auth modal ---------- */
+#authScrim{position:fixed;inset:0;background:rgba(8,32,31,.55);z-index:120;display:none;align-items:center;justify-content:center;padding:20px;}
+#authScrim.on{display:flex;}
+.modal{background:var(--surface);border-radius:18px;max-width:400px;width:100%;padding:28px 26px;box-shadow:var(--shadow);position:relative;}
+.modal-close{position:absolute;top:14px;right:14px;background:none;border:0;width:30px;height:30px;color:var(--ink-soft);font-size:1.3rem;line-height:1;}
+.modal-close:hover{color:var(--ink);}
+.modal h2{font-size:1.35rem;margin-bottom:6px;}
+.modal .lede{font-size:.88rem;margin-bottom:18px;}
+.auth-tabs{display:flex;gap:6px;background:var(--sunk);border-radius:10px;padding:4px;margin-bottom:18px;}
+.auth-tab{flex:1;background:none;border:0;padding:8px;border-radius:7px;font-size:.85rem;font-weight:600;color:var(--ink-soft);}
+.auth-tab[aria-selected="true"]{background:var(--surface);color:var(--ink);box-shadow:0 1px 3px rgba(0,0,0,.08);}
+.auth-form{display:flex;flex-direction:column;gap:10px;}
+.auth-form input{width:100%;}
+.field-label{font-size:.78rem;font-weight:600;color:var(--ink-soft);margin-bottom:6px;}
+.or-div{display:flex;align-items:center;gap:10px;margin:16px 0;color:var(--ink-soft);font-size:.78rem;}
+.or-div::before,.or-div::after{content:"";flex:1;height:1px;background:var(--line);}
+.google-btn{
+  display:flex;align-items:center;justify-content:center;gap:10px;width:100%;
+  border:1px solid var(--line);background:var(--surface);color:var(--ink);
+  border-radius:10px;padding:11px;font-weight:600;font-size:.9rem;
+}
+.google-btn:hover{background:var(--sunk);}
+.google-btn svg{width:18px;height:18px;flex:none;}
+.google-btn.loading{color:var(--ink-soft);pointer-events:none;}
+.auth-note{font-size:.78rem;color:var(--ink-soft);margin-top:14px;line-height:1.5;}
+.view[hidden]{display:none;}
+.eyebrow{color:var(--teal);font-weight:600;font-size:.8rem;margin:0 0 6px;}
+.lede{color:var(--ink-soft);max-width:62ch;}
+
+/* ---------- Home ---------- */
+.hero{padding:16px 0 28px;}
+.hero h1{font-size:clamp(2rem,5.5vw,3rem);max-width:16ch;}
+.hero p{font-size:1.06rem;color:var(--ink-soft);max-width:54ch;margin-top:14px;}
+.hero-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px;}
+.btn{
+  border:0;border-radius:999px;padding:13px 24px;font-weight:600;font-size:.95rem;
+  background:var(--sunk);color:var(--ink);
+}
+.btn-primary{background:var(--mint);color:#04241A;}
+.btn-primary:hover{filter:brightness(1.06);}
+.btn-ghost{background:transparent;border:1px solid var(--line);color:var(--ink);}
+.btn:hover{filter:brightness(.97);}
+
+.grid{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));margin-top:34px;}
+.card{
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+  padding:20px;text-align:left;width:100%;
+}
+button.card:hover{border-color:var(--teal);}
+.card-ico{width:36px;height:36px;border-radius:10px;background:var(--sunk);display:grid;place-items:center;margin-bottom:12px;}
+.card-ico svg{width:18px;height:18px;stroke:var(--teal);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;}
+.card h3{font-size:1.05rem;margin-bottom:5px;}
+.card p{font-size:.88rem;color:var(--ink-soft);margin:0;}
+
+.note{
+  background:var(--amber-bg);border-radius:var(--radius);padding:18px 20px;
+  margin-top:32px;font-size:.92rem;color:var(--ink);
+}
+.note strong{font-weight:600;}
+
+/* ---------- Panic ---------- */
+.panic-stage{
+  background:var(--surface);border:1px solid var(--line);border-radius:20px;
+  padding:34px 20px;text-align:center;margin-top:22px;
+}
+.press-dots{display:flex;gap:9px;justify-content:center;margin-bottom:24px;}
+.dot{width:11px;height:11px;border-radius:50%;background:var(--line);transition:background .15s, transform .15s;}
+.dot.on{background:var(--mint);transform:scale(1.35);}
+.power{
+  width:170px;height:170px;border-radius:50%;border:0;
+  background:var(--alert);color:#fff;font-weight:700;font-size:1rem;
+  display:grid;place-items:center;gap:8px;margin:0 auto;
+  box-shadow:0 0 0 12px rgba(192,57,43,.1);
+  transition:transform .1s, box-shadow .2s;
+}
+.power:active{transform:scale(.95);}
+.power.armed{background:var(--mint);color:#04241A;box-shadow:0 0 0 18px rgba(8,185,138,.16);}
+.power svg{width:42px;height:42px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;}
+.power span{display:block;font-size:.85rem;font-weight:600;}
+.panic-hint{color:var(--ink-soft);font-size:.92rem;margin-top:22px;}
+.countdown{font-family:var(--serif);font-size:3.4rem;color:var(--alert);line-height:1;margin:8px 0;}
+.sent-box{
+  background:var(--sunk);border:1px solid var(--mint);border-radius:var(--radius);
+  padding:20px;text-align:left;max-width:440px;margin:0 auto;
+}
+.sent-box h3{color:var(--ink);font-size:1.1rem;margin-bottom:10px;}
+.sent-list{list-style:none;margin:0 0 12px;padding:0;font-size:.92rem;}
+.sent-list li{padding:5px 0;display:flex;gap:8px;align-items:center;}
+.tick{color:var(--mint);font-weight:700;}
+.meta{font-size:.82rem;color:var(--ink-soft);}
+
+/* ---------- Circle ---------- */
+.row{
+  display:flex;align-items:center;gap:14px;
+  background:var(--surface);border:1px solid var(--line);
+  border-radius:var(--radius);padding:14px 16px;margin-bottom:10px;
+}
+.avatar{
+  width:42px;height:42px;border-radius:50%;background:var(--teal);color:#fff;
+  display:grid;place-items:center;font-weight:600;flex:none;
+}
+.row-main{flex:1;min-width:0;}
+.row-main strong{display:block;font-size:.98rem;}
+.row-main .meta{display:block;}
+.row-actions{display:flex;gap:8px;flex:none;}
+@media (max-width:520px){
+  .row{flex-wrap:wrap;}
+  .row-main{flex:1 1 120px;}
+  .row-actions{flex:1 1 100%;justify-content:flex-end;}
+}
+.mini{
+  border:1px solid var(--line);background:var(--surface);color:var(--ink);
+  border-radius:999px;padding:6px 13px;font-size:.8rem;font-weight:600;
+}
+.mini:hover{border-color:var(--teal);color:var(--teal);}
+.mini.danger:hover{border-color:var(--alert);color:var(--alert);}
+.status{width:10px;height:10px;border-radius:50%;background:var(--line);flex:none;}
+.status.fresh{background:var(--mint);}
+
+form.add{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px;}
+input[type=text],input[type=email],input[type=password],textarea{
+  font-family:inherit;font-size:.95rem;color:var(--ink);
+  background:var(--surface);border:1px solid var(--line);
+  border-radius:10px;padding:11px 14px;flex:1;min-width:150px;
+}
+textarea{width:100%;resize:vertical;min-height:110px;line-height:1.55;}
+::placeholder{color:var(--ink-soft);opacity:.75;}
+
+/* ---------- Resources ---------- */
+.res{
+  display:flex;align-items:center;gap:14px;background:var(--surface);
+  border:1px solid var(--line);border-radius:var(--radius);padding:15px 16px;margin-bottom:10px;
+}
+.res-ico{width:38px;height:38px;border-radius:10px;background:var(--sunk);display:grid;place-items:center;flex:none;}
+.res-ico svg{width:18px;height:18px;stroke:var(--teal);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;}
+.call{
+  background:var(--teal);color:#fff;text-decoration:none;border-radius:999px;
+  padding:9px 18px;font-weight:600;font-size:.85rem;flex:none;
+}
+.call:hover{filter:brightness(1.08);}
+
+/* ---------- Awareness ---------- */
+.sign{
+  display:flex;gap:12px;align-items:flex-start;background:var(--surface);
+  border:1px solid var(--line);border-radius:var(--radius);padding:14px 16px;margin-bottom:8px;
+  cursor:pointer;
+}
+.sign input{margin-top:4px;width:18px;height:18px;accent-color:var(--teal);flex:none;cursor:pointer;}
+.sign.checked{border-color:var(--teal);background:var(--sunk);}
+.sign span{font-size:.94rem;}
+.tally{
+  position:sticky;bottom:14px;background:var(--deep);color:#fff;
+  border-radius:var(--radius);padding:16px 20px;margin-top:20px;box-shadow:var(--shadow);
+}
+.tally p{margin:0;font-size:.92rem;color:#CFE4E2;}
+.tally strong{color:#fff;}
+
+/* ---------- Stories ---------- */
+.tab-switch{display:flex;gap:8px;margin:18px 0;}
+.pill{
+  border:1px solid var(--line);background:var(--surface);color:var(--ink-soft);
+  border-radius:999px;padding:9px 18px;font-weight:600;font-size:.87rem;
+}
+.pill[aria-pressed="true"]{background:var(--teal);color:#fff;border-color:var(--teal);}
+.story{
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+  padding:18px 20px;margin-bottom:12px;
+}
+.story p{font-size:.95rem;margin-bottom:10px;white-space:pre-wrap;}
+.story footer{display:flex;gap:12px;align-items:center;font-size:.8rem;color:var(--ink-soft);}
+.heard{border:1px solid var(--line);background:var(--surface);color:var(--ink-soft);border-radius:999px;padding:4px 12px;font-size:.78rem;font-weight:600;}
+.heard.on{border-color:var(--mint);color:var(--mint);}
+
+.chat{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:18px;}
+.msgs{display:flex;flex-direction:column;gap:10px;max-height:340px;overflow-y:auto;padding-right:4px;}
+.msg{max-width:78%;padding:11px 15px;border-radius:16px;font-size:.93rem;line-height:1.5;}
+.msg.them{background:var(--sunk);border-bottom-left-radius:5px;align-self:flex-start;}
+.msg.me{background:var(--teal);color:#fff;border-bottom-right-radius:5px;align-self:flex-end;}
+.chat form{display:flex;gap:8px;margin-top:14px;}
+.disclaimer{font-size:.8rem;color:var(--ink-soft);margin-top:12px;border-top:1px solid var(--line);padding-top:12px;}
+
+.empty{color:var(--ink-soft);font-size:.93rem;background:var(--sunk);border-radius:var(--radius);padding:22px;text-align:center;}
+
+/* ---------- Toast ---------- */
+#toast:empty{display:none;}
+#toast{
+  position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(140%);
+  background:var(--deep);color:#fff;padding:13px 22px;border-radius:999px;
+  font-size:.9rem;font-weight:500;z-index:200;transition:transform .25s ease;
+  box-shadow:var(--shadow);max-width:90vw;text-align:center;
+}
+#toast.show{transform:translateX(-50%) translateY(0);}
+
+/* ---------- Quick exit cover ---------- */
+#cover{position:fixed;inset:0;background:#fff;color:#1a1a1a;z-index:999;display:none;font-family:var(--sans);}
+#cover.on{display:block;}
+.cover-in{max-width:520px;margin:0 auto;padding:60px 24px;text-align:center;}
+.cover-temp{font-size:5rem;font-weight:300;line-height:1;color:#222;}
+.cover-city{font-size:1.1rem;color:#555;margin-top:4px;}
+.cover-days{display:flex;justify-content:space-between;margin-top:44px;border-top:1px solid #eee;padding-top:20px;color:#555;font-size:.85rem;}
+.cover-back{margin-top:56px;background:none;border:1px solid #ddd;color:#999;border-radius:999px;padding:8px 18px;font-size:.78rem;}
+
+footer.site{border-top:1px solid var(--line);padding:26px 0;color:var(--ink-soft);font-size:.85rem;}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;}
+</style>
+</head>
+<body>
+
+<div id="cover" aria-hidden="true">
+  <div class="cover-in">
+    <div class="cover-temp">21°</div>
+    <div class="cover-city">Gqeberha — Partly cloudy</div>
+    <div class="cover-days">
+      <div>Mon<br>22°</div><div>Tue<br>19°</div><div>Wed<br>24°</div>
+      <div>Thu<br>23°</div><div>Fri<br>20°</div>
+    </div>
+    <button class="cover-back" id="coverBack">Prototype: return to SafeCircle</button>
+  </div>
+</div>
+
+<div id="scrim"></div>
+
+<a class="skip" href="#main">Skip to main content</a>
+<div class="shell">
+  <aside class="sidebar" id="sidebar" aria-label="Main">
+    <div class="brand">
+      <span class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6z"/></svg>
+      </span>
+      SafeCircle
+    </div>
+
+    <button class="side-exit" id="exitBtnSide">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="M16 17l5-5-5-5M21 12H9"/></svg>
+      Quick exit
+    </button>
+
+    <ul class="side-nav" role="tablist">
+      <li><button class="tab" role="tab" data-view="home" aria-selected="true"><span class="dot-ico" aria-hidden="true"></span>Home</button></li>
+      <li><button class="tab" role="tab" data-view="panic" aria-selected="false"><span class="dot-ico" aria-hidden="true"></span>Panic alert</button></li>
+      <li><button class="tab" role="tab" data-view="circle" aria-selected="false"><span class="dot-ico" aria-hidden="true"></span>My circle</button></li>
+      <li><button class="tab" role="tab" data-view="resources" aria-selected="false"><span class="dot-ico" aria-hidden="true"></span>Resources</button></li>
+      <li><button class="tab" role="tab" data-view="awareness" aria-selected="false"><span class="dot-ico" aria-hidden="true"></span>Awareness</button></li>
+      <li><button class="tab" role="tab" data-view="stories" aria-selected="false"><span class="dot-ico" aria-hidden="true"></span>Share your story</button></li>
+    </ul>
+
+    <div class="side-account" id="sideAccount"></div>
+  </aside>
+
+  <div class="content">
+    <div class="topbar">
+      <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <div class="brand">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6z"/></svg>
+        </span>
+        SafeCircle
+      </div>
+      <button class="side-exit" id="exitBtnTop">Quick exit</button>
+    </div>
+
+    <main class="wrap" id="main" tabindex="-1">
+
+  <!-- HOME -->
+  <section class="view" id="view-home" role="tabpanel" aria-label="Home">
+    <div class="hero">
+      <h1>You should not have to explain yourself to get help.</h1>
+      <p>SafeCircle gives you a fast way to reach the people you trust, plain-language information about what abuse actually looks like, and a place to say what happened — anonymously, if that is easier.</p>
+      <div class="hero-actions">
+        <button class="btn btn-primary" data-go="panic">Set up the panic alert</button>
+        <button class="btn btn-ghost" data-go="resources">I need help right now</button>
+      </div>
+    </div>
+
+    <div class="grid">
+      <button class="card" data-go="panic">
+        <span class="card-ico"><svg viewBox="0 0 24 24"><path d="M13 2L3 14h8l-1 8 10-12h-8z"/></svg></span>
+        <h3>Panic alert</h3>
+        <p>Three presses sends your circle a message with your location. No typing.</p>
+      </button>
+      <button class="card" data-go="circle">
+        <span class="card-ico"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/></svg></span>
+        <h3>My circle</h3>
+        <p>A private handful of people who get alerted, and who you check in on.</p>
+      </button>
+      <button class="card" data-go="resources">
+        <span class="card-ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/><path d="M4.9 4.9l3.5 3.5M15.6 15.6l3.5 3.5M19.1 4.9l-3.5 3.5M8.4 15.6l-3.5 3.5"/></svg></span>
+        <h3>Resources</h3>
+        <p>Helplines, police, counselling and legal aid. One tap, no searching.</p>
+      </button>
+      <button class="card" data-go="awareness">
+        <span class="card-ico"><svg viewBox="0 0 24 24"><path d="M10.3 3.9L1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/><path d="M12 9v4M12 17h.01"/></svg></span>
+        <h3>Awareness</h3>
+        <p>Early warning signs in plain words — for your own relationship or a friend's.</p>
+      </button>
+      <button class="card" data-go="stories">
+        <span class="card-ico"><svg viewBox="0 0 24 24"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.5 8.4 8.4 0 0 1-3.8-.9L3 21l1.9-5.2A8.4 8.4 0 0 1 4 11.5 8.4 8.4 0 0 1 12.5 3 8.4 8.4 0 0 1 21 11.5z"/></svg></span>
+        <h3>Share your story</h3>
+        <p>Write it down anonymously, or talk it through with a listener first.</p>
+      </button>
+      <button class="card" id="exitCard">
+        <span class="card-ico"><svg viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="M16 17l5-5-5-5M21 12H9"/></svg></span>
+        <h3>Quick exit</h3>
+        <p>Leaves this page instantly and shows a weather screen instead. Or press Escape.</p>
+      </button>
+    </div>
+
+    <div class="note">
+      <strong>Where responsibility sits.</strong> Nothing on this site is here because anyone being hurt has done something wrong. Abuse is a choice made by the person doing it. SafeCircle exists to make getting help faster — not to put the job of stopping it on you.
+    </div>
+  </section>
+
+  <!-- PANIC -->
+  <section class="view" id="view-panic" role="tabpanel" aria-label="Panic alert" hidden>
+    <p class="eyebrow">Panic alert</p>
+    <h2>Press the button three times</h2>
+    <p class="lede">Three presses starts a five-second countdown, then sends your circle your location and a short message. You can cancel during the countdown. Nothing is typed, so it works when you cannot talk.</p>
+
+    <div class="panic-stage" id="panicStage">
+      <div class="press-dots" id="dots" aria-hidden="true">
+        <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+      </div>
+      <button class="power" id="powerBtn" aria-describedby="panicHint">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v9"/><path d="M18.4 6.6a9 9 0 1 1-12.8 0"/></svg>
+        <span>Press 3&times;</span>
+      </button>
+      <p class="panic-hint" id="panicHint" aria-live="polite">Presses reset after two seconds of no activity.</p>
+    </div>
+    <p class="meta" style="margin-top:14px;">This is a prototype, so no message actually leaves your device. On the real site this would send an SMS and a push notification to everyone in your circle.</p>
+  </section>
+
+  <!-- CIRCLE -->
+  <section class="view" id="view-circle" role="tabpanel" aria-label="My circle" hidden>
+    <p class="eyebrow">My circle</p>
+    <h2>The people who get alerted</h2>
+    <p class="lede">Keep it small — three or four people who would actually pick up. They can see when you last checked in, and you can see theirs.</p>
+
+    <div id="circleList"></div>
+
+    <form class="add" id="addForm">
+      <label class="sr" for="newName">Name of person to add</label>
+      <input type="text" id="newName" placeholder="Name (e.g. Nande M.)" maxlength="40" required>
+      <button class="btn btn-primary" type="submit">Add to circle</button>
+    </form>
+  </section>
+
+  <!-- RESOURCES -->
+  <section class="view" id="view-resources" role="tabpanel" aria-label="Resources" hidden>
+    <p class="eyebrow">Resources</p>
+    <h2>Real numbers, free to call</h2>
+    <p class="lede">These are national South African services. All of them are free and most run twenty-four hours.</p>
+    <div id="resList" style="margin-top:20px;"></div>
+    <div class="note">
+      <strong>If you are in immediate danger, call 10111 first.</strong> Everything else on this page can wait until you are somewhere safe.
+    </div>
+  </section>
+
+  <!-- AWARENESS -->
+  <section class="view" id="view-awareness" role="tabpanel" aria-label="Awareness" hidden>
+    <p class="eyebrow">Awareness</p>
+    <h2>What it looks like before it looks like abuse</h2>
+    <p class="lede">Tick anything that feels familiar — about your own relationship, or someone else's. Nothing is saved anywhere but this device, and you can clear it at any time.</p>
+    <div id="signList" style="margin-top:20px;"></div>
+    <div class="tally" id="tally" role="status">
+      <p>Nothing ticked yet. Read through the list at your own pace.</p>
+    </div>
+  </section>
+
+  <!-- STORIES -->
+  <section class="view" id="view-stories" role="tabpanel" aria-label="Share your story" hidden>
+    <p class="eyebrow">Share your story</p>
+    <h2>Say it in your own words</h2>
+    <p class="lede">You do not need a name, a full story, or the right words. Write as little as you want. If writing into the open feels like too much, talk to a listener first instead.</p>
+
+    <div class="tab-switch" role="group" aria-label="Choose how to share">
+      <button class="pill" id="pillWrite" aria-pressed="true">Write anonymously</button>
+      <button class="pill" id="pillTalk" aria-pressed="false">Talk to a listener</button>
+    </div>
+
+    <div id="paneWrite">
+      <form id="storyForm">
+        <label class="sr" for="storyText">Your story</label>
+        <textarea id="storyText" placeholder="Start anywhere. There is no right way to do this." maxlength="1500"></textarea>
+        <div style="display:flex;gap:10px;align-items:center;margin-top:10px;flex-wrap:wrap;">
+          <button class="btn btn-primary" type="submit" id="storySubmit" disabled>Post anonymously</button>
+          <span class="meta">Posted as Anonymous. Nothing identifying is attached.</span>
+        </div>
+      </form>
+      <h3 style="margin:30px 0 14px;font-size:1.15rem;">From other people</h3>
+      <div id="storyList"></div>
+    </div>
+
+    <div id="paneTalk" hidden>
+      <div class="chat">
+        <div class="msgs" id="msgs" role="log" aria-live="polite" aria-label="Conversation"></div>
+        <form id="chatForm">
+          <label class="sr" for="chatInput">Message</label>
+          <input type="text" id="chatInput" placeholder="Type whatever is on your mind" maxlength="400" autocomplete="off">
+          <button class="btn btn-primary" type="submit">Send</button>
+        </form>
+        <p class="disclaimer">This listener is a prototype demonstration, not a counsellor and not a real person. It cannot help in an emergency. For real support, the numbers under Resources are free and staffed by trained people.</p>
+      </div>
+    </div>
+  </section>
+
+    </main>
+
+  </div>
+</div>
+
+<div id="toast" role="status" aria-live="polite"></div>
+
+<div id="authScrim">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="authTitle">
+    <button class="modal-close" id="authClose" aria-label="Close">&times;</button>
+    <div class="auth-tabs" role="tablist">
+      <button class="auth-tab" id="authTabIn" role="tab" aria-selected="true">Sign in</button>
+      <button class="auth-tab" id="authTabUp" role="tab" aria-selected="false">Sign up</button>
+    </div>
+    <h2 id="authTitle">Welcome back</h2>
+    <p class="lede" id="authSub">Sign in to sync your circle and check-ins across devices. Nothing here is required to use the panic alert or resources.</p>
+
+    <form class="auth-form" id="authForm">
+      <div id="authNameWrap" hidden>
+        <div class="field-label">Name</div>
+        <input type="text" id="authName" placeholder="What should we call you?" autocomplete="name" aria-label="Name">
+      </div>
+      <div>
+        <div class="field-label">Email</div>
+        <input type="email" id="authEmail" placeholder="you@example.com" autocomplete="email" aria-label="Email" required>
+      </div>
+      <div>
+        <div class="field-label">Password</div>
+        <input type="password" id="authPass" placeholder="At least 8 characters" autocomplete="current-password" aria-label="Password" minlength="8" required>
+      </div>
+      <button class="btn btn-primary" type="submit" id="authSubmit">Sign in</button>
+    </form>
+
+    <div class="or-div">or</div>
+
+    <button class="google-btn" id="googleBtn" type="button">
+      <svg viewBox="0 0 48 48" aria-hidden="true"><path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3C33.8 32.6 29.3 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.9 1.2 8 3.1l5.7-5.7C34.5 6.1 29.5 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.7-.4-3.5z"/><path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.6 15.9 18.9 13 24 13c3.1 0 5.9 1.2 8 3.1l5.7-5.7C34.5 6.1 29.5 4 24 4c-7.7 0-14.4 4.3-17.7 10.7z"/><path fill="#4CAF50" d="M24 44c5.3 0 10.1-2 13.7-5.4l-6.3-5.3C29.4 34.9 26.8 36 24 36c-5.3 0-9.7-3.4-11.3-8.1l-6.5 5C9.5 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-1 2.9-3 5.3-5.6 6.9l6.3 5.3C39.9 37.4 44 31.4 44 24c0-1.3-.1-2.7-.4-3.5z"/></svg>
+      <span id="googleLabel">Continue with Google</span>
+    </button>
+
+    <p class="auth-note">A prototype account only — nothing is actually created or sent anywhere. Signing in is never required to reach the panic alert, resources, or awareness pages.</p>
+  </div>
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ---------- storage helpers (fail quietly) ---------- */
+  var KEY = "safecircle:v1";
+  var state = { circle:null, stories:null, signs:[], user:null };
+
+  function load(){
+    try{
+      var raw = localStorage.getItem(KEY);
+      if(raw){ var d = JSON.parse(raw); if(d && typeof d === "object") state = Object.assign(state, d); }
+    }catch(e){}
+    if(!Array.isArray(state.circle)) state.circle = [
+      { name:"Nande M.", last: Date.now() - 2*3600*1000 },
+      { name:"Musa B.", last: Date.now() - 9*3600*1000 },
+      { name:"Jess B.", last: null }
+    ];
+    if(!Array.isArray(state.stories)) state.stories = [
+      { text:"I kept telling myself it was only bad when he was stressed. Writing that sentence out is the first time I have seen how often he was stressed.", when: Date.now()-86400000*3, heard:4 },
+      { text:"My friend stopped answering our group chat months ago. I did not want to be dramatic so I said nothing. I am going to message her today.", when: Date.now()-86400000, heard:7 }
+    ];
+    if(!Array.isArray(state.signs)) state.signs = [];
+  }
+  function save(){
+    try{ localStorage.setItem(KEY, JSON.stringify(state)); }catch(e){}
+  }
+
+  /* ---------- toast ---------- */
+  var toastEl = document.getElementById("toast"), toastT;
+  function toast(msg){
+    toastEl.textContent = msg;
+    toastEl.classList.add("show");
+    clearTimeout(toastT);
+    toastT = setTimeout(function(){ toastEl.classList.remove("show"); }, 7000);
+  }
+  toastEl.addEventListener("click", function(){ toastEl.classList.remove("show"); });
+
+  function ago(ts){
+    if(!ts) return "Not checked in yet";
+    var m = Math.floor((Date.now()-ts)/60000);
+    if(m < 1) return "Checked in just now";
+    if(m < 60) return "Checked in " + m + " min ago";
+    var h = Math.floor(m/60);
+    if(h < 24) return "Checked in " + h + (h===1?" hour ago":" hours ago");
+    var d = Math.floor(h/24);
+    return "Checked in " + d + (d===1?" day ago":" days ago");
+  }
+
+  /* ---------- mobile sidebar ---------- */
+  var sidebar = document.getElementById("sidebar");
+  var scrim = document.getElementById("scrim");
+  var hamburger = document.getElementById("hamburger");
+  function openSidebar(){
+    sidebar.classList.add("open"); scrim.classList.add("on");
+    hamburger.setAttribute("aria-expanded","true");
+  }
+  function closeSidebar(){
+    sidebar.classList.remove("open"); scrim.classList.remove("on");
+    hamburger.setAttribute("aria-expanded","false");
+  }
+  hamburger.addEventListener("click", function(){
+    sidebar.classList.contains("open") ? closeSidebar() : openSidebar();
+  });
+  scrim.addEventListener("click", closeSidebar);
+
+  /* ---------- navigation ---------- */
+  var tabs = Array.prototype.slice.call(document.querySelectorAll(".tab"));
+  function show(name){
+    tabs.forEach(function(t){
+      var on = t.dataset.view === name;
+      t.setAttribute("aria-selected", on ? "true" : "false");
+    });
+    ["home","panic","circle","resources","awareness","stories"].forEach(function(v){
+      document.getElementById("view-"+v).hidden = (v !== name);
+    });
+    closeSidebar();
+    window.scrollTo({ top:0, behavior:"instant" in document.documentElement.style ? "instant" : "auto" });
+  }
+  tabs.forEach(function(t){ t.addEventListener("click", function(){ show(t.dataset.view); }); });
+  document.querySelectorAll("[data-go]").forEach(function(b){
+    b.addEventListener("click", function(){ show(b.dataset.go); });
+  });
+
+  /* ---------- quick exit ---------- */
+  var cover = document.getElementById("cover");
+  function quickExit(){
+    cover.classList.add("on");
+    cover.setAttribute("aria-hidden","false");
+    document.title = "Weather — Gqeberha";
+    closeSidebar();
+    resetPanic();
+  }
+  document.querySelectorAll("#exitBtnSide, #exitBtnTop, #exitCard").forEach(function(b){
+    b.addEventListener("click", quickExit);
+  });
+  document.getElementById("coverBack").addEventListener("click", function(){
+    cover.classList.remove("on");
+    cover.setAttribute("aria-hidden","true");
+    document.title = "SafeCircle";
+  });
+  document.addEventListener("keydown", function(e){
+    if(e.key === "Escape" && !cover.classList.contains("on")) quickExit();
+  });
+
+  /* ---------- panic alert ---------- */
+  var presses = 0, pressTimer = null, countTimer = null;
+  var stage = document.getElementById("panicStage");
+  var powerBtn = document.getElementById("powerBtn");
+  var dots = document.getElementById("dots");
+
+  function paintDots(){
+    Array.prototype.forEach.call(dots.children, function(d,i){
+      d.classList.toggle("on", i < presses);
+    });
+    /* text status so progress never depends on colour alone */
+    var lbl = document.querySelector("#powerBtn span");
+    var hint = document.getElementById("panicHint");
+    if(lbl) lbl.textContent = presses > 0 && presses < 3 ? (3 - presses) + " more" : "Press 3\u00d7";
+    if(hint) hint.textContent = presses > 0 && presses < 3
+      ? presses + " of 3 presses. Resets after two seconds of no activity."
+      : "Presses reset after two seconds of no activity.";
+  }
+  function resetPanic(){
+    presses = 0;
+    clearTimeout(pressTimer); clearInterval(countTimer);
+    stage.innerHTML = '<div class="press-dots" id="dots" aria-hidden="true"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>' +
+      '<button class="power" id="powerBtn" aria-describedby="panicHint">' +
+      '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v9"/><path d="M18.4 6.6a9 9 0 1 1-12.8 0"/></svg>' +
+      '<span>Press 3&times;</span></button>' +
+      '<p class="panic-hint" id="panicHint" aria-live="polite">Presses reset after two seconds of no activity.</p>';
+    dots = document.getElementById("dots");
+    powerBtn = document.getElementById("powerBtn");
+    powerBtn.addEventListener("click", onPress);
+  }
+  function onPress(){
+    presses++;
+    paintDots();
+    clearTimeout(pressTimer);
+    if(presses >= 3){ startCountdown(); return; }
+    powerBtn.classList.add("armed");
+    pressTimer = setTimeout(function(){
+      presses = 0; paintDots();
+      if(powerBtn) powerBtn.classList.remove("armed");
+    }, 2000);
+  }
+  function startCountdown(){
+    var n = 5;
+    stage.innerHTML =
+      '<p class="meta">Sending your alert in</p>' +
+      '<div class="countdown" id="cd" role="status">5</div>' +
+      '<button class="btn btn-ghost" id="cancelBtn">Cancel — I am okay</button>';
+    document.getElementById("cancelBtn").addEventListener("click", function(){
+      clearInterval(countTimer);
+      resetPanic();
+      toast("Alert cancelled. Nothing was sent.");
+    });
+    countTimer = setInterval(function(){
+      n--;
+      var cd = document.getElementById("cd");
+      if(cd) cd.textContent = String(n);
+      if(n <= 0){ clearInterval(countTimer); sendAlert(); }
+    }, 1000);
+  }
+  function sendAlert(){
+    var names = state.circle.map(function(c){ return c.name; });
+    var list = names.length
+      ? names.map(function(n){ return '<li><span class="tick">\u2713</span> ' + esc(n) + ' — notified</li>'; }).join("")
+      : '<li class="meta">Your circle is empty. Add someone so this alert reaches a person.</li>';
+    var t = new Date();
+    stage.innerHTML =
+      '<div class="sent-box">' +
+        '<h3>Your alert was sent</h3>' +
+        '<ul class="sent-list">' + list + '</ul>' +
+        '<p class="meta" style="margin:0 0 4px;">Location shared: Daku Road, KwaZakhele, Gqeberha</p>' +
+        '<p class="meta" style="margin:0 0 14px;">Sent at ' + t.getHours() + ":" + String(t.getMinutes()).padStart(2,"0") + '</p>' +
+        '<button class="btn btn-ghost" id="againBtn">Back to the button</button>' +
+      '</div>';
+    document.getElementById("againBtn").addEventListener("click", resetPanic);
+    toast(names.length ? "Alert sent to " + names.length + " " + (names.length===1?"person":"people") : "Alert triggered, but your circle is empty");
+  }
+  powerBtn.addEventListener("click", onPress);
+
+  /* ---------- circle ---------- */
+  function esc(s){
+    return String(s).replace(/[&<>"']/g, function(c){
+      return ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;" })[c];
+    });
+  }
+  var circleList = document.getElementById("circleList");
+  function renderCircle(){
+    if(!state.circle.length){
+      circleList.innerHTML = '<div class="empty">Your circle is empty. Add one person you would actually want to hear from at 2am.</div>';
+      return;
+    }
+    circleList.innerHTML = state.circle.map(function(c,i){
+      var fresh = c.last && (Date.now()-c.last) < 24*3600*1000;
+      return '<div class="row">' +
+        '<span class="avatar" aria-hidden="true">' + esc(c.name.trim().charAt(0).toUpperCase()) + '</span>' +
+        '<span class="row-main"><strong>' + esc(c.name) + '</strong><span class="meta">' + ago(c.last) + '</span></span>' +
+        '<span class="status ' + (fresh?"fresh":"") + '" aria-hidden="true"></span>' +
+        '<span class="row-actions">' +
+          '<button class="mini" data-check="' + i + '">Check in</button>' +
+          '<button class="mini danger" data-remove="' + i + '">Remove</button>' +
+        '</span></div>';
+    }).join("");
+  }
+  circleList.addEventListener("click", function(e){
+    var b = e.target.closest("button");
+    if(!b) return;
+    if(b.dataset.check !== undefined){
+      var i = +b.dataset.check;
+      state.circle[i].last = Date.now();
+      save(); renderCircle();
+      toast("Checked in with " + state.circle[i].name);
+    }
+    if(b.dataset.remove !== undefined){
+      var j = +b.dataset.remove;
+      var gone = state.circle[j].name;
+      state.circle.splice(j,1);
+      save(); renderCircle();
+      toast(gone + " removed from your circle");
+    }
+  });
+  document.getElementById("addForm").addEventListener("submit", function(e){
+    e.preventDefault();
+    var inp = document.getElementById("newName");
+    var name = inp.value.trim();
+    if(!name) return;
+    if(state.circle.length >= 8){ toast("Keep it small — eight is the maximum."); return; }
+    state.circle.push({ name:name, last:null });
+    inp.value = "";
+    save(); renderCircle();
+    toast(name + " added to your circle");
+  });
+
+  /* ---------- resources ---------- */
+  var RES = [
+    { n:"GBV Command Centre", d:"24 hours, free, trained counsellors", tel:"0800428428", label:"0800 428 428",
+      i:'<circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/><path d="M4.9 4.9l3.5 3.5M15.6 15.6l3.5 3.5"/>' },
+    { n:"SAPS emergency", d:"Immediate danger, police response", tel:"10111", label:"10111",
+      i:'<path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6z"/>' },
+    { n:"Lifeline South Africa", d:"Counselling and trauma support", tel:"0861322322", label:"0861 322 322",
+      i:'<path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l8.8 8.8 8.8-8.8a5.5 5.5 0 0 0 0-7.8z"/>' },
+    { n:"Legal Aid South Africa", d:"Protection orders and free legal advice", tel:"0800110110", label:"0800 110 110",
+      i:'<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/>' },
+    { n:"Childline South Africa", d:"For anyone under 18, or worried about a child", tel:"116", label:"116",
+      i:'<path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/>' },
+    { n:"SADAG mental health line", d:"If you need to talk to someone tonight", tel:"0800567567", label:"0800 567 567",
+      i:'<path d="M21 11.5a8.4 8.4 0 0 1-9 8.5 8.4 8.4 0 0 1-3.8-.9L3 21l1.9-5.2A8.4 8.4 0 0 1 4 11.5 8.4 8.4 0 0 1 12.5 3 8.4 8.4 0 0 1 21 11.5z"/>' }
+  ];
+  document.getElementById("resList").innerHTML = RES.map(function(r){
+    return '<div class="res">' +
+      '<span class="res-ico" aria-hidden="true"><svg viewBox="0 0 24 24">' + r.i + '</svg></span>' +
+      '<span class="row-main"><strong>' + r.n + '</strong><span class="meta">' + r.d + '</span></span>' +
+      '<a class="call" href="tel:' + r.tel + '">' + r.label + '</a>' +
+    '</div>';
+  }).join("");
+
+  /* ---------- awareness ---------- */
+  var SIGNS = [
+    "They check your phone, your messages, or who you have been with.",
+    "You find yourself seeing friends and family less than you used to.",
+    "Jealousy is explained as proof of how much they care.",
+    "You change what you say or wear to avoid setting them off.",
+    "Money is controlled by them, or you have to account for what you spend.",
+    "After a fight, somehow it ends up being your fault.",
+    "They threaten to leave, to hurt themselves, or to hurt you, to end an argument.",
+    "You have been pushed, grabbed, blocked from leaving a room, or held down.",
+    "They decide where you go and who you go with.",
+    "Sex has happened when you did not want it to.",
+    "You feel relief, not disappointment, when plans with them get cancelled.",
+    "Friends or family have said they are worried about you."
+  ];
+  var signList = document.getElementById("signList");
+  signList.innerHTML = SIGNS.map(function(s,i){
+    var on = state.signs.indexOf(i) > -1;
+    return '<label class="sign' + (on?" checked":"") + '" data-i="' + i + '">' +
+      '<input type="checkbox"' + (on?" checked":"") + '><span>' + s + '</span></label>';
+  }).join("");
+
+  function renderTally(){
+    var n = state.signs.length;
+    var t = document.getElementById("tally");
+    var msg;
+    if(n === 0) msg = "<p>Nothing ticked yet. Read through the list at your own pace.</p>";
+    else if(n <= 2) msg = "<p>You have ticked <strong>" + n + "</strong>. Even one of these is worth taking seriously — it does not have to get worse before it counts.</p>";
+    else msg = "<p>You have ticked <strong>" + n + "</strong>. That is a pattern, not a bad week. Talking to someone on the Resources page is free, and you do not have to have decided anything yet.</p>";
+    t.innerHTML = msg + (n ? '<button class="mini" id="clearSigns" style="margin-top:12px;background:transparent;color:#CFE4E2;border-color:rgba(255,255,255,.3);">Clear my ticks</button>' : "");
+    var c = document.getElementById("clearSigns");
+    if(c) c.addEventListener("click", function(){
+      state.signs = []; save();
+      signList.querySelectorAll("input").forEach(function(x){ x.checked = false; });
+      signList.querySelectorAll(".sign").forEach(function(x){ x.classList.remove("checked"); });
+      renderTally();
+      toast("Cleared. Nothing was kept.");
+    });
+  }
+  signList.addEventListener("change", function(e){
+    var lab = e.target.closest(".sign");
+    if(!lab) return;
+    var i = +lab.dataset.i;
+    var at = state.signs.indexOf(i);
+    if(e.target.checked && at === -1) state.signs.push(i);
+    else if(!e.target.checked && at > -1) state.signs.splice(at,1);
+    lab.classList.toggle("checked", e.target.checked);
+    save(); renderTally();
+  });
+
+  /* ---------- stories ---------- */
+  var storyList = document.getElementById("storyList");
+  function renderStories(){
+    if(!state.stories.length){
+      storyList.innerHTML = '<div class="empty">Nothing here yet. If you post, yours will be the first.</div>';
+      return;
+    }
+    storyList.innerHTML = state.stories.map(function(s,i){
+      var d = new Date(s.when);
+      return '<article class="story">' +
+        '<p>' + esc(s.text) + '</p>' +
+        '<footer><span>Anonymous &middot; ' + d.toLocaleDateString("en-ZA",{day:"numeric",month:"short"}) + '</span>' +
+        '<button class="heard' + (s.mine?" on":"") + '" data-heard="' + i + '">I hear you &middot; ' + (s.heard||0) + '</button></footer>' +
+      '</article>';
+    }).join("");
+  }
+  storyList.addEventListener("click", function(e){
+    var b = e.target.closest("[data-heard]");
+    if(!b) return;
+    var i = +b.dataset.heard;
+    var s = state.stories[i];
+    if(s.mine){ s.heard = Math.max(0,(s.heard||0)-1); s.mine = false; }
+    else { s.heard = (s.heard||0)+1; s.mine = true; }
+    save(); renderStories();
+  });
+  document.getElementById("storyForm").addEventListener("submit", function(e){
+    e.preventDefault();
+    var ta = document.getElementById("storyText");
+    var v = ta.value.trim();
+    if(!v){ toast("Write something first, even one line."); return; }
+    state.stories.unshift({ text:v, when:Date.now(), heard:0 });
+    ta.value = "";
+    document.getElementById("storySubmit").disabled = true;
+    save(); renderStories();
+    toast("Posted anonymously. Thank you for saying it.");
+  });
+
+  document.getElementById("storyText").addEventListener("input", function(){
+    document.getElementById("storySubmit").disabled = !this.value.trim();
+  });
+
+  /* pane switch */
+  var pw = document.getElementById("pillWrite"), pt = document.getElementById("pillTalk");
+  function pane(write){
+    pw.setAttribute("aria-pressed", write?"true":"false");
+    pt.setAttribute("aria-pressed", write?"false":"true");
+    document.getElementById("paneWrite").hidden = !write;
+    document.getElementById("paneTalk").hidden = write;
+  }
+  pw.addEventListener("click", function(){ pane(true); });
+  pt.addEventListener("click", function(){ pane(false); });
+
+  /* ---------- listener chat (scripted prototype) ---------- */
+  var msgs = document.getElementById("msgs");
+  function bubble(text, who){
+    var d = document.createElement("div");
+    d.className = "msg " + who;
+    d.textContent = text;
+    msgs.appendChild(d);
+    msgs.scrollTop = msgs.scrollHeight;
+  }
+  bubble("I am here, and there is no rush. You can start anywhere — or say nothing much at all and that is fine too.", "them");
+
+  var GENERIC = [
+    "Thank you for telling me that. You did not have to.",
+    "That sounds heavy to have been carrying on your own.",
+    "You are allowed to feel exactly how you feel about it.",
+    "Take your time. I am not going anywhere.",
+    "None of what you have described is something you brought on yourself."
+  ];
+  var gi = 0;
+  function reply(userText){
+    var t = userText.toLowerCase();
+    var out;
+    if(/scared|afraid|frightened|terrified|unsafe/.test(t)){
+      out = "Being scared is information, not weakness. If you are in danger right now, 10111 is the fastest route — it is on the Resources page. If you are safe for the moment, we can keep talking.";
+    } else if(/hit|hurt|beat|choke|forced|assault|rape/.test(t)){
+      out = "I am sorry that happened to you. That was not your fault, whatever was said afterwards. The GBV Command Centre on 0800 428 428 is free and staffed all night if you want to speak to a trained person.";
+    } else if(/my fault|blame|deserve|stupid|should have/.test(t)){
+      out = "You are describing something someone else chose to do. The responsibility for it sits with them, not with what you said or wore or did not notice in time.";
+    } else if(/alone|nobody|no one|lonely/.test(t)){
+      out = "Feeling alone in this is very common, and it is also usually not true for as long as it feels true. Is there one person you would tell first, if telling was easy?";
+    } else if(/leave|leaving|break up|get out/.test(t)){
+      out = "Leaving is often the most dangerous moment, which is why planning it with someone helps. Legal Aid on 0800 110 110 can talk you through a protection order for free, with no obligation to use it.";
+    } else if(/thank|thanks|better/.test(t)){
+      out = "You did the hard part by saying it out loud. Whenever you are ready, the numbers under Resources are real people who do this every day.";
+    } else {
+      out = GENERIC[gi % GENERIC.length]; gi++;
+    }
+    setTimeout(function(){ bubble(out, "them"); }, 650);
+  }
+  document.getElementById("chatForm").addEventListener("submit", function(e){
+    e.preventDefault();
+    var inp = document.getElementById("chatInput");
+    var v = inp.value.trim();
+    if(!v) return;
+    bubble(v, "me");
+    inp.value = "";
+    reply(v);
+  });
+
+  /* ---------- account (sidebar) ---------- */
+  function renderAccount(){
+    var el = document.getElementById("sideAccount");
+    if(state.user){
+      el.innerHTML = '<div class="account-chip">' +
+        '<span class="avatar" aria-hidden="true">' + esc(state.user.name.trim().charAt(0).toUpperCase()) + '</span>' +
+        '<span class="account-info"><strong>' + esc(state.user.name) + '</strong><span>' + esc(state.user.email) + '</span></span>' +
+        '<button class="account-out" id="signOutBtn">Sign out</button>' +
+      '</div>';
+      var so = document.getElementById("signOutBtn");
+      if(so) so.addEventListener("click", function(){
+        state.user = null; save(); renderAccount();
+        toast("Signed out");
+      });
+    } else {
+      el.innerHTML = '<div class="auth-btns">' +
+        '<button class="btn btn-ghost" id="openSignIn">Sign in</button>' +
+        '<button class="btn btn-primary" id="openSignUp">Sign up</button>' +
+      '</div>';
+      document.getElementById("openSignIn").addEventListener("click", function(){ openAuth("in"); });
+      document.getElementById("openSignUp").addEventListener("click", function(){ openAuth("up"); });
+    }
+  }
+
+  /* ---------- auth modal (prototype only — nothing leaves the browser) ---------- */
+  var authScrim = document.getElementById("authScrim");
+  var authTabIn = document.getElementById("authTabIn");
+  var authTabUp = document.getElementById("authTabUp");
+  var authTitle = document.getElementById("authTitle");
+  var authSub = document.getElementById("authSub");
+  var authNameWrap = document.getElementById("authNameWrap");
+  var authName = document.getElementById("authName");
+  var authSubmit = document.getElementById("authSubmit");
+  var googleLabel = document.getElementById("googleLabel");
+  var authMode = "in";
+
+  function setAuthMode(mode){
+    authMode = mode;
+    var up = mode === "up";
+    authTabIn.setAttribute("aria-selected", up ? "false" : "true");
+    authTabUp.setAttribute("aria-selected", up ? "true" : "false");
+    authNameWrap.hidden = !up;
+    authTitle.textContent = up ? "Create an account" : "Welcome back";
+    authSub.textContent = up
+      ? "Optional — lets you sync your circle and check-ins if you use SafeCircle on more than one device. You can pick any name."
+      : "Sign in to sync your circle and check-ins across devices. Nothing here is required to use the panic alert or resources.";
+    authSubmit.textContent = up ? "Create account" : "Sign in";
+    googleLabel.textContent = up ? "Sign up with Google" : "Continue with Google";
+  }
+  authTabIn.addEventListener("click", function(){ setAuthMode("in"); });
+  authTabUp.addEventListener("click", function(){ setAuthMode("up"); });
+
+  function openAuth(mode){
+    setAuthMode(mode || "in");
+    authScrim.classList.add("on");
+    closeSidebar();
+    setTimeout(function(){ document.getElementById("authEmail").focus(); }, 10);
+  }
+  function closeAuth(){
+    authScrim.classList.remove("on");
+    document.getElementById("authForm").reset();
+  }
+  document.getElementById("authClose").addEventListener("click", closeAuth);
+  authScrim.addEventListener("click", function(e){ if(e.target === authScrim) closeAuth(); });
+  document.addEventListener("keydown", function(e){
+    if(e.key === "Escape" && authScrim.classList.contains("on")) closeAuth();
+  });
+
+  document.getElementById("authForm").addEventListener("submit", function(e){
+    e.preventDefault();
+    var email = document.getElementById("authEmail").value.trim();
+    if(!email) return;
+    var name = authMode === "up"
+      ? (authName.value.trim() || email.split("@")[0])
+      : (state.user ? state.user.name : email.split("@")[0]);
+    state.user = { name:name, email:email, provider:"email" };
+    save(); renderAccount(); closeAuth();
+    toast(authMode === "up" ? "Account created" : "Signed in");
+  });
+
+  document.getElementById("googleBtn").addEventListener("click", function(){
+    var btn = this;
+    btn.classList.add("loading");
+    var was = googleLabel.textContent;
+    googleLabel.textContent = "Connecting to Google\u2026";
+    setTimeout(function(){
+      state.user = { name:"Uviwe B.", email:"uviwe.booi@gmail.com", provider:"google" };
+      save(); renderAccount(); closeAuth();
+      btn.classList.remove("loading");
+      googleLabel.textContent = was;
+      toast("Signed in with Google");
+    }, 900);
+  });
+
+  /* ---------- boot ---------- */
+  load();
+  renderCircle();
+  renderStories();
+  renderTally();
+  renderAccount();
+})();
+</script>
+</body>
+</html>
+  --deep:#0C2B2A;
+  --teal:#0A7A7F;
+  --mint:#08B98A;
+  --amber:#B2701A;
+  --amber-bg:#FDF4E6;
+  --alert:#C0392B;
+  --radius:14px;
+  --shadow:0 2px 4px rgba(12,43,42,.04), 0 12px 28px rgba(12,43,42,.07);
+  --serif:"Newsreader", Georgia, "Times New Roman", serif;
+  --sans:"Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --ink:#E6F2F0; --ink-soft:#9BB8B5; --paper:#08201F; --surface:#0E2B2A;
+    --sunk:#133736; --line:#1E4544; --deep:#061715; --teal:#2FA6A4;
+    --mint:#25C79A; --amber:#E0A94A; --amber-bg:#2A2214;
+    --shadow:0 2px 4px rgba(0,0,0,.2), 0 12px 28px rgba(0,0,0,.35);
+  }
+}
+:root[data-theme="dark"]{
+  --ink:#E6F2F0; --ink-soft:#9BB8B5; --paper:#08201F; --surface:#0E2B2A;
+  --sunk:#133736; --line:#1E4544; --deep:#061715; --teal:#2FA6A4;
+  --mint:#25C79A; --amber:#E0A94A; --amber-bg:#2A2214;
+  --shadow:0 2px 4px rgba(0,0,0,.2), 0 12px 28px rgba(0,0,0,.35);
+}
+
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+body{
+  background:var(--paper);
+  color:var(--ink);
+  font-family:var(--sans);
+  font-size:16px;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3{font-family:var(--serif);font-weight:600;line-height:1.2;margin:0;letter-spacing:-.01em;}
+p{margin:0 0 1rem;}
+a{color:var(--teal);}
+button{font-family:inherit;font-size:inherit;cursor:pointer;}
+:focus-visible{outline:3px solid var(--mint);outline-offset:2px;border-radius:6px;}
+.skip{position:absolute;left:12px;top:-60px;z-index:100;background:var(--ink,#0B2B2A);color:#fff;padding:10px 16px;border-radius:8px;font-weight:600;text-decoration:none;}
+.skip:focus{top:12px;}
+.btn:disabled{opacity:.5;cursor:not-allowed;filter:none;}
+@media (prefers-reduced-motion: reduce){
+  *{animation-duration:.01ms !important;transition-duration:.01ms !important;}
+}
+
+/* ---------- Layout ---------- */
+.wrap{max-width:760px;margin:0 auto;padding:0 32px;}
+.shell{display:flex;align-items:flex-start;}
+
+.sidebar{
+  width:250px;flex:none;position:sticky;top:0;height:100vh;overflow-y:auto;
+  background:var(--surface);border-right:1px solid var(--line);
+  display:flex;flex-direction:column;padding:22px 18px;
+}
+.brand{display:flex;align-items:center;gap:10px;font-family:var(--serif);font-size:1.2rem;font-weight:600;padding:0 4px;}
+.brand-mark{
+  width:28px;height:28px;border-radius:50%;
+  background:var(--teal);display:grid;place-items:center;flex:none;
+}
+.brand-mark svg{width:15px;height:15px;stroke:#fff;fill:none;stroke-width:2;}
+
+.side-exit{
+  margin-top:16px;background:var(--deep);color:#fff;border:0;width:100%;
+  padding:11px 14px;border-radius:10px;font-weight:600;font-size:.85rem;text-align:left;
+  display:flex;align-items:center;gap:9px;
+}
+.side-exit svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:2;flex:none;}
+.side-exit:hover{background:var(--alert);}
+
+.side-nav{list-style:none;margin:22px 0 0;padding:0;display:flex;flex-direction:column;gap:2px;}
+.tab{
+  background:none;border:0;text-align:left;width:100%;
+  padding:10px 12px;border-radius:10px;
+  color:var(--ink-soft);font-weight:500;font-size:.92rem;
+  display:flex;align-items:center;gap:10px;
+}
+.tab:hover{background:var(--sunk);color:var(--ink);}
+.tab[aria-selected="true"]{background:var(--sunk);color:var(--teal);font-weight:600;}
+.tab .dot-ico{width:6px;height:6px;border-radius:50%;background:currentColor;opacity:.5;flex:none;}
+
+.side-account{margin-top:auto;padding-top:18px;border-top:1px solid var(--line);}
+.auth-btns{display:flex;flex-direction:column;gap:8px;}
+.auth-btns .btn{width:100%;text-align:center;padding:10px 14px;}
+.account-chip{display:flex;align-items:center;gap:10px;}
+.account-chip .avatar{width:34px;height:34px;font-size:.85rem;}
+.account-info{flex:1;min-width:0;}
+.account-info strong{display:block;font-size:.86rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.account-info span{display:block;font-size:.74rem;color:var(--ink-soft);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.account-out{border:0;background:none;color:var(--ink-soft);font-size:.76rem;text-decoration:underline;padding:0;flex:none;}
+
+.content{flex:1;min-width:0;}
+.topbar{
+  display:none;position:sticky;top:0;z-index:60;
+  background:var(--surface);border-bottom:1px solid var(--line);
+  align-items:center;gap:14px;padding:12px 20px;
+}
+.hamburger{background:none;border:0;width:30px;height:22px;display:flex;flex-direction:column;justify-content:space-between;flex:none;padding:0;}
+.hamburger span{display:block;height:2px;width:100%;background:var(--ink);border-radius:1px;}
+.topbar .brand{font-size:1.05rem;}
+.topbar .side-exit{width:auto;margin:0 0 0 auto;padding:8px 14px;font-size:.8rem;}
+#scrim{position:fixed;inset:0;background:rgba(8,32,31,.4);z-index:70;display:none;}
+#scrim.on{display:block;}
+
+@media (max-width:880px){
+  .sidebar{
+    position:fixed;top:0;left:0;z-index:80;
+    transform:translateX(-100%);transition:transform .22s ease;
+    box-shadow:var(--shadow);
+  }
+  .sidebar.open{transform:translateX(0);}
+  .topbar{display:flex;}
+  .wrap{padding:0 20px;}
+}
+
+main{padding:32px 0 40px;}
+
+/* ---------- Auth modal ---------- */
+#authScrim{position:fixed;inset:0;background:rgba(8,32,31,.55);z-index:120;display:none;align-items:center;justify-content:center;padding:20px;}
+#authScrim.on{display:flex;}
+.modal{background:var(--surface);border-radius:18px;max-width:400px;width:100%;padding:28px 26px;box-shadow:var(--shadow);position:relative;}
+.modal-close{position:absolute;top:14px;right:14px;background:none;border:0;width:30px;height:30px;color:var(--ink-soft);font-size:1.3rem;line-height:1;}
+.modal-close:hover{color:var(--ink);}
+.modal h2{font-size:1.35rem;margin-bottom:6px;}
+.modal .lede{font-size:.88rem;margin-bottom:18px;}
+.auth-tabs{display:flex;gap:6px;background:var(--sunk);border-radius:10px;padding:4px;margin-bottom:18px;}
+.auth-tab{flex:1;background:none;border:0;padding:8px;border-radius:7px;font-size:.85rem;font-weight:600;color:var(--ink-soft);}
+.auth-tab[aria-selected="true"]{background:var(--surface);color:var(--ink);box-shadow:0 1px 3px rgba(0,0,0,.08);}
+.auth-form{display:flex;flex-direction:column;gap:10px;}
+.auth-form input{width:100%;}
+.field-label{font-size:.78rem;font-weight:600;color:var(--ink-soft);margin-bottom:6px;}
+.or-div{display:flex;align-items:center;gap:10px;margin:16px 0;color:var(--ink-soft);font-size:.78rem;}
+.or-div::before,.or-div::after{content:"";flex:1;height:1px;background:var(--line);}
+.google-btn{
+  display:flex;align-items:center;justify-content:center;gap:10px;width:100%;
+  border:1px solid var(--line);background:var(--surface);color:var(--ink);
+  border-radius:10px;padding:11px;font-weight:600;font-size:.9rem;
+}
+.google-btn:hover{background:var(--sunk);}
+.google-btn svg{width:18px;height:18px;flex:none;}
+.google-btn.loading{color:var(--ink-soft);pointer-events:none;}
+.auth-note{font-size:.78rem;color:var(--ink-soft);margin-top:14px;line-height:1.5;}
+.view[hidden]{display:none;}
+.eyebrow{color:var(--teal);font-weight:600;font-size:.8rem;margin:0 0 6px;}
+.lede{color:var(--ink-soft);max-width:62ch;}
+
+/* ---------- Home ---------- */
+.hero{padding:16px 0 28px;}
+.hero h1{font-size:clamp(2rem,5.5vw,3rem);max-width:16ch;}
+.hero p{font-size:1.06rem;color:var(--ink-soft);max-width:54ch;margin-top:14px;}
+.hero-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px;}
+.btn{
+  border:0;border-radius:999px;padding:13px 24px;font-weight:600;font-size:.95rem;
+  background:var(--sunk);color:var(--ink);
+}
+.btn-primary{background:var(--mint);color:#04241A;}
+.btn-primary:hover{filter:brightness(1.06);}
+.btn-ghost{background:transparent;border:1px solid var(--line);color:var(--ink);}
+.btn:hover{filter:brightness(.97);}
+
+.grid{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));margin-top:34px;}
+.card{
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+  padding:20px;text-align:left;width:100%;
+}
+button.card:hover{border-color:var(--teal);}
+.card-ico{width:36px;height:36px;border-radius:10px;background:var(--sunk);display:grid;place-items:center;margin-bottom:12px;}
+.card-ico svg{width:18px;height:18px;stroke:var(--teal);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;}
+.card h3{font-size:1.05rem;margin-bottom:5px;}
+.card p{font-size:.88rem;color:var(--ink-soft);margin:0;}
+
+.note{
+  background:var(--amber-bg);border-radius:var(--radius);padding:18px 20px;
+  margin-top:32px;font-size:.92rem;color:var(--ink);
+}
+.note strong{font-weight:600;}
+
+/* ---------- Panic ---------- */
+.panic-stage{
+  background:var(--surface);border:1px solid var(--line);border-radius:20px;
+  padding:34px 20px;text-align:center;margin-top:22px;
+}
+.press-dots{display:flex;gap:9px;justify-content:center;margin-bottom:24px;}
+.dot{width:11px;height:11px;border-radius:50%;background:var(--line);transition:background .15s, transform .15s;}
+.dot.on{background:var(--mint);transform:scale(1.35);}
+.power{
+  width:170px;height:170px;border-radius:50%;border:0;
+  background:var(--alert);color:#fff;font-weight:700;font-size:1rem;
+  display:grid;place-items:center;gap:8px;margin:0 auto;
+  box-shadow:0 0 0 12px rgba(192,57,43,.1);
+  transition:transform .1s, box-shadow .2s;
+}
+.power:active{transform:scale(.95);}
+.power.armed{background:var(--mint);color:#04241A;box-shadow:0 0 0 18px rgba(8,185,138,.16);}
+.power svg{width:42px;height:42px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;}
+.power span{display:block;font-size:.85rem;font-weight:600;}
+.panic-hint{color:var(--ink-soft);font-size:.92rem;margin-top:22px;}
+.countdown{font-family:var(--serif);font-size:3.4rem;color:var(--alert);line-height:1;margin:8px 0;}
+.sent-box{
+  background:var(--sunk);border:1px solid var(--mint);border-radius:var(--radius);
+  padding:20px;text-align:left;max-width:440px;margin:0 auto;
+}
+.sent-box h3{color:var(--ink);font-size:1.1rem;margin-bottom:10px;}
+.sent-list{list-style:none;margin:0 0 12px;padding:0;font-size:.92rem;}
+.sent-list li{padding:5px 0;display:flex;gap:8px;align-items:center;}
+.tick{color:var(--mint);font-weight:700;}
+.meta{font-size:.82rem;color:var(--ink-soft);}
+
+/* ---------- Circle ---------- */
+.row{
+  display:flex;align-items:center;gap:14px;
+  background:var(--surface);border:1px solid var(--line);
+  border-radius:var(--radius);padding:14px 16px;margin-bottom:10px;
+}
+.avatar{
+  width:42px;height:42px;border-radius:50%;background:var(--teal);color:#fff;
+  display:grid;place-items:center;font-weight:600;flex:none;
+}
+.row-main{flex:1;min-width:0;}
+.row-main strong{display:block;font-size:.98rem;}
+.row-main .meta{display:block;}
+.row-actions{display:flex;gap:8px;flex:none;}
+@media (max-width:520px){
+  .row{flex-wrap:wrap;}
+  .row-main{flex:1 1 120px;}
+  .row-actions{flex:1 1 100%;justify-content:flex-end;}
+}
+.mini{
+  border:1px solid var(--line);background:var(--surface);color:var(--ink);
+  border-radius:999px;padding:6px 13px;font-size:.8rem;font-weight:600;
+}
+.mini:hover{border-color:var(--teal);color:var(--teal);}
+.mini.danger:hover{border-color:var(--alert);color:var(--alert);}
+.status{width:10px;height:10px;border-radius:50%;background:var(--line);flex:none;}
+.status.fresh{background:var(--mint);}
+
+form.add{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px;}
+input[type=text],input[type=email],input[type=password],textarea{
+  font-family:inherit;font-size:.95rem;color:var(--ink);
+  background:var(--surface);border:1px solid var(--line);
+  border-radius:10px;padding:11px 14px;flex:1;min-width:150px;
+}
+textarea{width:100%;resize:vertical;min-height:110px;line-height:1.55;}
+::placeholder{color:var(--ink-soft);opacity:.75;}
+
+/* ---------- Resources ---------- */
+.res{
+  display:flex;align-items:center;gap:14px;background:var(--surface);
+  border:1px solid var(--line);border-radius:var(--radius);padding:15px 16px;margin-bottom:10px;
+}
+.res-ico{width:38px;height:38px;border-radius:10px;background:var(--sunk);display:grid;place-items:center;flex:none;}
+.res-ico svg{width:18px;height:18px;stroke:var(--teal);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;}
+.call{
+  background:var(--teal);color:#fff;text-decoration:none;border-radius:999px;
+  padding:9px 18px;font-weight:600;font-size:.85rem;flex:none;
+}
+.call:hover{filter:brightness(1.08);}
+
+/* ---------- Awareness ---------- */
+.sign{
+  display:flex;gap:12px;align-items:flex-start;background:var(--surface);
+  border:1px solid var(--line);border-radius:var(--radius);padding:14px 16px;margin-bottom:8px;
+  cursor:pointer;
+}
+.sign input{margin-top:4px;width:18px;height:18px;accent-color:var(--teal);flex:none;cursor:pointer;}
+.sign.checked{border-color:var(--teal);background:var(--sunk);}
+.sign span{font-size:.94rem;}
+.tally{
+  position:sticky;bottom:14px;background:var(--deep);color:#fff;
+  border-radius:var(--radius);padding:16px 20px;margin-top:20px;box-shadow:var(--shadow);
+}
+.tally p{margin:0;font-size:.92rem;color:#CFE4E2;}
+.tally strong{color:#fff;}
+
+/* ---------- Stories ---------- */
+.tab-switch{display:flex;gap:8px;margin:18px 0;}
+.pill{
+  border:1px solid var(--line);background:var(--surface);color:var(--ink-soft);
+  border-radius:999px;padding:9px 18px;font-weight:600;font-size:.87rem;
+}
+.pill[aria-pressed="true"]{background:var(--teal);color:#fff;border-color:var(--teal);}
+.story{
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+  padding:18px 20px;margin-bottom:12px;
+}
+.story p{font-size:.95rem;margin-bottom:10px;white-space:pre-wrap;}
+.story footer{display:flex;gap:12px;align-items:center;font-size:.8rem;color:var(--ink-soft);}
+.heard{border:1px solid var(--line);background:var(--surface);color:var(--ink-soft);border-radius:999px;padding:4px 12px;font-size:.78rem;font-weight:600;}
+.heard.on{border-color:var(--mint);color:var(--mint);}
+
+.chat{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:18px;}
+.msgs{display:flex;flex-direction:column;gap:10px;max-height:340px;overflow-y:auto;padding-right:4px;}
+.msg{max-width:78%;padding:11px 15px;border-radius:16px;font-size:.93rem;line-height:1.5;}
+.msg.them{background:var(--sunk);border-bottom-left-radius:5px;align-self:flex-start;}
+.msg.me{background:var(--teal);color:#fff;border-bottom-right-radius:5px;align-self:flex-end;}
+.chat form{display:flex;gap:8px;margin-top:14px;}
+.disclaimer{font-size:.8rem;color:var(--ink-soft);margin-top:12px;border-top:1px solid var(--line);padding-top:12px;}
+
+.empty{color:var(--ink-soft);font-size:.93rem;background:var(--sunk);border-radius:var(--radius);padding:22px;text-align:center;}
+
+/* ---------- Toast ---------- */
+#toast:empty{display:none;}
+#toast{
+  position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(140%);
+  background:var(--deep);color:#fff;padding:13px 22px;border-radius:999px;
+  font-size:.9rem;font-weight:500;z-index:200;transition:transform .25s ease;
+  box-shadow:var(--shadow);max-width:90vw;text-align:center;
+}
+#toast.show{transform:translateX(-50%) translateY(0);}
+
+/* ---------- Quick exit cover ---------- */
+#cover{position:fixed;inset:0;background:#fff;color:#1a1a1a;z-index:999;display:none;font-family:var(--sans);}
+#cover.on{display:block;}
+.cover-in{max-width:520px;margin:0 auto;padding:60px 24px;text-align:center;}
+.cover-temp{font-size:5rem;font-weight:300;line-height:1;color:#222;}
+.cover-city{font-size:1.1rem;color:#555;margin-top:4px;}
+.cover-days{display:flex;justify-content:space-between;margin-top:44px;border-top:1px solid #eee;padding-top:20px;color:#555;font-size:.85rem;}
+.cover-back{margin-top:56px;background:none;border:1px solid #ddd;color:#999;border-radius:999px;padding:8px 18px;font-size:.78rem;}
+
+footer.site{border-top:1px solid var(--line);padding:26px 0;color:var(--ink-soft);font-size:.85rem;}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;}
+</style>
+</head>
+<body>
+
+<div id="cover" aria-hidden="true">
+  <div class="cover-in">
+    <div class="cover-temp">21°</div>
+    <div class="cover-city">Gqeberha — Partly cloudy</div>
+    <div class="cover-days">
+      <div>Mon<br>22°</div><div>Tue<br>19°</div><div>Wed<br>24°</div>
+      <div>Thu<br>23°</div><div>Fri<br>20°</div>
+    </div>
+    <button class="cover-back" id="coverBack">Prototype: return to SafeCircle</button>
+  </div>
+</div>
+
+<div id="scrim"></div>
+
+<a class="skip" href="#main">Skip to main content</a>
+<div class="shell">
+  <aside class="sidebar" id="sidebar" aria-label="Main">
+    <div class="brand">
+      <span class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6z"/></svg>
+      </span>
+      SafeCircle
+    </div>
+
+    <button class="side-exit" id="exitBtnSide">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="M16 17l5-5-5-5M21 12H9"/></svg>
+      Quick exit
+    </button>
+
+    <ul class="side-nav" role="tablist">
+      <li><button class="tab" role="tab" data-view="home" aria-selected="true"><span class="dot-ico" aria-hidden="true"></span>Home</button></li>
+      <li><button class="tab" role="tab" data-view="panic" aria-selected="false"><span class="dot-ico" aria-hidden="true"></span>Panic alert</button></li>
+      <li><button class="tab" role="tab" data-view="circle" aria-selected="false"><span class="dot-ico" aria-hidden="true"></span>My circle</button></li>
+      <li><button class="tab" role="tab" data-view="resources" aria-selected="false"><span class="dot-ico" aria-hidden="true"></span>Resources</button></li>
+      <li><button class="tab" role="tab" data-view="awareness" aria-selected="false"><span class="dot-ico" aria-hidden="true"></span>Awareness</button></li>
+      <li><button class="tab" role="tab" data-view="stories" aria-selected="false"><span class="dot-ico" aria-hidden="true"></span>Share your story</button></li>
+    </ul>
+
+    <div class="side-account" id="sideAccount"></div>
+  </aside>
+
+  <div class="content">
+    <div class="topbar">
+      <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <div class="brand">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6z"/></svg>
+        </span>
+        SafeCircle
+      </div>
+      <button class="side-exit" id="exitBtnTop">Quick exit</button>
+    </div>
+
+    <main class="wrap" id="main" tabindex="-1">
+
+  <!-- HOME -->
+  <section class="view" id="view-home" role="tabpanel" aria-label="Home">
+    <div class="hero">
+      <h1>You should not have to explain yourself to get help.</h1>
+      <p>SafeCircle gives you a fast way to reach the people you trust, plain-language information about what abuse actually looks like, and a place to say what happened — anonymously, if that is easier.</p>
+      <div class="hero-actions">
+        <button class="btn btn-primary" data-go="panic">Set up the panic alert</button>
+        <button class="btn btn-ghost" data-go="resources">I need help right now</button>
+      </div>
+    </div>
+
+    <div class="grid">
+      <button class="card" data-go="panic">
+        <span class="card-ico"><svg viewBox="0 0 24 24"><path d="M13 2L3 14h8l-1 8 10-12h-8z"/></svg></span>
+        <h3>Panic alert</h3>
+        <p>Three presses sends your circle a message with your location. No typing.</p>
+      </button>
+      <button class="card" data-go="circle">
+        <span class="card-ico"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/></svg></span>
+        <h3>My circle</h3>
+        <p>A private handful of people who get alerted, and who you check in on.</p>
+      </button>
+      <button class="card" data-go="resources">
+        <span class="card-ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/><path d="M4.9 4.9l3.5 3.5M15.6 15.6l3.5 3.5M19.1 4.9l-3.5 3.5M8.4 15.6l-3.5 3.5"/></svg></span>
+        <h3>Resources</h3>
+        <p>Helplines, police, counselling and legal aid. One tap, no searching.</p>
+      </button>
+      <button class="card" data-go="awareness">
+        <span class="card-ico"><svg viewBox="0 0 24 24"><path d="M10.3 3.9L1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/><path d="M12 9v4M12 17h.01"/></svg></span>
+        <h3>Awareness</h3>
+        <p>Early warning signs in plain words — for your own relationship or a friend's.</p>
+      </button>
+      <button class="card" data-go="stories">
+        <span class="card-ico"><svg viewBox="0 0 24 24"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.5 8.4 8.4 0 0 1-3.8-.9L3 21l1.9-5.2A8.4 8.4 0 0 1 4 11.5 8.4 8.4 0 0 1 12.5 3 8.4 8.4 0 0 1 21 11.5z"/></svg></span>
+        <h3>Share your story</h3>
+        <p>Write it down anonymously, or talk it through with a listener first.</p>
+      </button>
+      <button class="card" id="exitCard">
+        <span class="card-ico"><svg viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="M16 17l5-5-5-5M21 12H9"/></svg></span>
+        <h3>Quick exit</h3>
+        <p>Leaves this page instantly and shows a weather screen instead. Or press Escape.</p>
+      </button>
+    </div>
+
+    <div class="note">
+      <strong>Where responsibility sits.</strong> Nothing on this site is here because anyone being hurt has done something wrong. Abuse is a choice made by the person doing it. SafeCircle exists to make getting help faster — not to put the job of stopping it on you.
+    </div>
+  </section>
+
+  <!-- PANIC -->
+  <section class="view" id="view-panic" role="tabpanel" aria-label="Panic alert" hidden>
+    <p class="eyebrow">Panic alert</p>
+    <h2>Press the button three times</h2>
+    <p class="lede">Three presses starts a five-second countdown, then sends your circle your location and a short message. You can cancel during the countdown. Nothing is typed, so it works when you cannot talk.</p>
+
+    <div class="panic-stage" id="panicStage">
+      <div class="press-dots" id="dots" aria-hidden="true">
+        <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+      </div>
+      <button class="power" id="powerBtn" aria-describedby="panicHint">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v9"/><path d="M18.4 6.6a9 9 0 1 1-12.8 0"/></svg>
+        <span>Press 3&times;</span>
+      </button>
+      <p class="panic-hint" id="panicHint" aria-live="polite">Presses reset after two seconds of no activity.</p>
+    </div>
+    <p class="meta" style="margin-top:14px;">This is a prototype, so no message actually leaves your device. On the real site this would send an SMS and a push notification to everyone in your circle.</p>
+  </section>
+
+  <!-- CIRCLE -->
+  <section class="view" id="view-circle" role="tabpanel" aria-label="My circle" hidden>
+    <p class="eyebrow">My circle</p>
+    <h2>The people who get alerted</h2>
+    <p class="lede">Keep it small — three or four people who would actually pick up. They can see when you last checked in, and you can see theirs.</p>
+
+    <div id="circleList"></div>
+
+    <form class="add" id="addForm">
+      <label class="sr" for="newName">Name of person to add</label>
+      <input type="text" id="newName" placeholder="Name (e.g. Nande M.)" maxlength="40" required>
+      <button class="btn btn-primary" type="submit">Add to circle</button>
+    </form>
+  </section>
+
+  <!-- RESOURCES -->
+  <section class="view" id="view-resources" role="tabpanel" aria-label="Resources" hidden>
+    <p class="eyebrow">Resources</p>
+    <h2>Real numbers, free to call</h2>
+    <p class="lede">These are national South African services. All of them are free and most run twenty-four hours.</p>
+    <div id="resList" style="margin-top:20px;"></div>
+    <div class="note">
+      <strong>If you are in immediate danger, call 10111 first.</strong> Everything else on this page can wait until you are somewhere safe.
+    </div>
+  </section>
+
+  <!-- AWARENESS -->
+  <section class="view" id="view-awareness" role="tabpanel" aria-label="Awareness" hidden>
+    <p class="eyebrow">Awareness</p>
+    <h2>What it looks like before it looks like abuse</h2>
+    <p class="lede">Tick anything that feels familiar — about your own relationship, or someone else's. Nothing is saved anywhere but this device, and you can clear it at any time.</p>
+    <div id="signList" style="margin-top:20px;"></div>
+    <div class="tally" id="tally" role="status">
+      <p>Nothing ticked yet. Read through the list at your own pace.</p>
+    </div>
+  </section>
+
+  <!-- STORIES -->
+  <section class="view" id="view-stories" role="tabpanel" aria-label="Share your story" hidden>
+    <p class="eyebrow">Share your story</p>
+    <h2>Say it in your own words</h2>
+    <p class="lede">You do not need a name, a full story, or the right words. Write as little as you want. If writing into the open feels like too much, talk to a listener first instead.</p>
+
+    <div class="tab-switch" role="group" aria-label="Choose how to share">
+      <button class="pill" id="pillWrite" aria-pressed="true">Write anonymously</button>
+      <button class="pill" id="pillTalk" aria-pressed="false">Talk to a listener</button>
+    </div>
+
+    <div id="paneWrite">
+      <form id="storyForm">
+        <label class="sr" for="storyText">Your story</label>
+        <textarea id="storyText" placeholder="Start anywhere. There is no right way to do this." maxlength="1500"></textarea>
+        <div style="display:flex;gap:10px;align-items:center;margin-top:10px;flex-wrap:wrap;">
+          <button class="btn btn-primary" type="submit" id="storySubmit" disabled>Post anonymously</button>
+          <span class="meta">Posted as Anonymous. Nothing identifying is attached.</span>
+        </div>
+      </form>
+      <h3 style="margin:30px 0 14px;font-size:1.15rem;">From other people</h3>
+      <div id="storyList"></div>
+    </div>
+
+    <div id="paneTalk" hidden>
+      <div class="chat">
+        <div class="msgs" id="msgs" role="log" aria-live="polite" aria-label="Conversation"></div>
+        <form id="chatForm">
+          <label class="sr" for="chatInput">Message</label>
+          <input type="text" id="chatInput" placeholder="Type whatever is on your mind" maxlength="400" autocomplete="off">
+          <button class="btn btn-primary" type="submit">Send</button>
+        </form>
+        <p class="disclaimer">This listener is a prototype demonstration, not a counsellor and not a real person. It cannot help in an emergency. For real support, the numbers under Resources are free and staffed by trained people.</p>
+      </div>
+    </div>
+  </section>
+
+    </main>
+
+  </div>
+</div>
+
+<div id="toast" role="status" aria-live="polite"></div>
+
+<div id="authScrim">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="authTitle">
+    <button class="modal-close" id="authClose" aria-label="Close">&times;</button>
+    <div class="auth-tabs" role="tablist">
+      <button class="auth-tab" id="authTabIn" role="tab" aria-selected="true">Sign in</button>
+      <button class="auth-tab" id="authTabUp" role="tab" aria-selected="false">Sign up</button>
+    </div>
+    <h2 id="authTitle">Welcome back</h2>
+    <p class="lede" id="authSub">Sign in to sync your circle and check-ins across devices. Nothing here is required to use the panic alert or resources.</p>
+
+    <form class="auth-form" id="authForm">
+      <div id="authNameWrap" hidden>
+        <div class="field-label">Name</div>
+        <input type="text" id="authName" placeholder="What should we call you?" autocomplete="name" aria-label="Name">
+      </div>
+      <div>
+        <div class="field-label">Email</div>
+        <input type="email" id="authEmail" placeholder="you@example.com" autocomplete="email" aria-label="Email" required>
+      </div>
+      <div>
+        <div class="field-label">Password</div>
+        <input type="password" id="authPass" placeholder="At least 8 characters" autocomplete="current-password" aria-label="Password" minlength="8" required>
+      </div>
+      <button class="btn btn-primary" type="submit" id="authSubmit">Sign in</button>
+    </form>
+
+    <div class="or-div">or</div>
+
+    <button class="google-btn" id="googleBtn" type="button">
+      <svg viewBox="0 0 48 48" aria-hidden="true"><path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3C33.8 32.6 29.3 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.9 1.2 8 3.1l5.7-5.7C34.5 6.1 29.5 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.7-.4-3.5z"/><path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.6 15.9 18.9 13 24 13c3.1 0 5.9 1.2 8 3.1l5.7-5.7C34.5 6.1 29.5 4 24 4c-7.7 0-14.4 4.3-17.7 10.7z"/><path fill="#4CAF50" d="M24 44c5.3 0 10.1-2 13.7-5.4l-6.3-5.3C29.4 34.9 26.8 36 24 36c-5.3 0-9.7-3.4-11.3-8.1l-6.5 5C9.5 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-1 2.9-3 5.3-5.6 6.9l6.3 5.3C39.9 37.4 44 31.4 44 24c0-1.3-.1-2.7-.4-3.5z"/></svg>
+      <span id="googleLabel">Continue with Google</span>
+    </button>
+
+    <p class="auth-note">A prototype account only — nothing is actually created or sent anywhere. Signing in is never required to reach the panic alert, resources, or awareness pages.</p>
+  </div>
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ---------- storage helpers (fail quietly) ---------- */
+  var KEY = "safecircle:v1";
+  var state = { circle:null, stories:null, signs:[], user:null };
+
+  function load(){
+    try{
+      var raw = localStorage.getItem(KEY);
+      if(raw){ var d = JSON.parse(raw); if(d && typeof d === "object") state = Object.assign(state, d); }
+    }catch(e){}
+    if(!Array.isArray(state.circle)) state.circle = [
+      { name:"Nande M.", last: Date.now() - 2*3600*1000 },
+      { name:"Musa B.", last: Date.now() - 9*3600*1000 },
+      { name:"Jess B.", last: null }
+    ];
+    if(!Array.isArray(state.stories)) state.stories = [
+      { text:"I kept telling myself it was only bad when he was stressed. Writing that sentence out is the first time I have seen how often he was stressed.", when: Date.now()-86400000*3, heard:4 },
+      { text:"My friend stopped answering our group chat months ago. I did not want to be dramatic so I said nothing. I am going to message her today.", when: Date.now()-86400000, heard:7 }
+    ];
+    if(!Array.isArray(state.signs)) state.signs = [];
+  }
+  function save(){
+    try{ localStorage.setItem(KEY, JSON.stringify(state)); }catch(e){}
+  }
+
+  /* ---------- toast ---------- */
+  var toastEl = document.getElementById("toast"), toastT;
+  function toast(msg){
+    toastEl.textContent = msg;
+    toastEl.classList.add("show");
+    clearTimeout(toastT);
+    toastT = setTimeout(function(){ toastEl.classList.remove("show"); }, 7000);
+  }
+  toastEl.addEventListener("click", function(){ toastEl.classList.remove("show"); });
+
+  function ago(ts){
+    if(!ts) return "Not checked in yet";
+    var m = Math.floor((Date.now()-ts)/60000);
+    if(m < 1) return "Checked in just now";
+    if(m < 60) return "Checked in " + m + " min ago";
+    var h = Math.floor(m/60);
+    if(h < 24) return "Checked in " + h + (h===1?" hour ago":" hours ago");
+    var d = Math.floor(h/24);
+    return "Checked in " + d + (d===1?" day ago":" days ago");
+  }
+
+  /* ---------- mobile sidebar ---------- */
+  var sidebar = document.getElementById("sidebar");
+  var scrim = document.getElementById("scrim");
+  var hamburger = document.getElementById("hamburger");
+  function openSidebar(){
+    sidebar.classList.add("open"); scrim.classList.add("on");
+    hamburger.setAttribute("aria-expanded","true");
+  }
+  function closeSidebar(){
+    sidebar.classList.remove("open"); scrim.classList.remove("on");
+    hamburger.setAttribute("aria-expanded","false");
+  }
+  hamburger.addEventListener("click", function(){
+    sidebar.classList.contains("open") ? closeSidebar() : openSidebar();
+  });
+  scrim.addEventListener("click", closeSidebar);
+
+  /* ---------- navigation ---------- */
+  var tabs = Array.prototype.slice.call(document.querySelectorAll(".tab"));
+  function show(name){
+    tabs.forEach(function(t){
+      var on = t.dataset.view === name;
+      t.setAttribute("aria-selected", on ? "true" : "false");
+    });
+    ["home","panic","circle","resources","awareness","stories"].forEach(function(v){
+      document.getElementById("view-"+v).hidden = (v !== name);
+    });
+    closeSidebar();
+    window.scrollTo({ top:0, behavior:"instant" in document.documentElement.style ? "instant" : "auto" });
+  }
+  tabs.forEach(function(t){ t.addEventListener("click", function(){ show(t.dataset.view); }); });
+  document.querySelectorAll("[data-go]").forEach(function(b){
+    b.addEventListener("click", function(){ show(b.dataset.go); });
+  });
+
+  /* ---------- quick exit ---------- */
+  var cover = document.getElementById("cover");
+  function quickExit(){
+    cover.classList.add("on");
+    cover.setAttribute("aria-hidden","false");
+    document.title = "Weather — Gqeberha";
+    closeSidebar();
+    resetPanic();
+  }
+  document.querySelectorAll("#exitBtnSide, #exitBtnTop, #exitCard").forEach(function(b){
+    b.addEventListener("click", quickExit);
+  });
+  document.getElementById("coverBack").addEventListener("click", function(){
+    cover.classList.remove("on");
+    cover.setAttribute("aria-hidden","true");
+    document.title = "SafeCircle";
+  });
+  document.addEventListener("keydown", function(e){
+    if(e.key === "Escape" && !cover.classList.contains("on")) quickExit();
+  });
+
+  /* ---------- panic alert ---------- */
+  var presses = 0, pressTimer = null, countTimer = null;
+  var stage = document.getElementById("panicStage");
+  var powerBtn = document.getElementById("powerBtn");
+  var dots = document.getElementById("dots");
+
+  function paintDots(){
+    Array.prototype.forEach.call(dots.children, function(d,i){
+      d.classList.toggle("on", i < presses);
+    });
+    /* text status so progress never depends on colour alone */
+    var lbl = document.querySelector("#powerBtn span");
+    var hint = document.getElementById("panicHint");
+    if(lbl) lbl.textContent = presses > 0 && presses < 3 ? (3 - presses) + " more" : "Press 3\u00d7";
+    if(hint) hint.textContent = presses > 0 && presses < 3
+      ? presses + " of 3 presses. Resets after two seconds of no activity."
+      : "Presses reset after two seconds of no activity.";
+  }
+  function resetPanic(){
+    presses = 0;
+    clearTimeout(pressTimer); clearInterval(countTimer);
+    stage.innerHTML = '<div class="press-dots" id="dots" aria-hidden="true"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>' +
+      '<button class="power" id="powerBtn" aria-describedby="panicHint">' +
+      '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v9"/><path d="M18.4 6.6a9 9 0 1 1-12.8 0"/></svg>' +
+      '<span>Press 3&times;</span></button>' +
+      '<p class="panic-hint" id="panicHint" aria-live="polite">Presses reset after two seconds of no activity.</p>';
+    dots = document.getElementById("dots");
+    powerBtn = document.getElementById("powerBtn");
+    powerBtn.addEventListener("click", onPress);
+  }
+  function onPress(){
+    presses++;
+    paintDots();
+    clearTimeout(pressTimer);
+    if(presses >= 3){ startCountdown(); return; }
+    powerBtn.classList.add("armed");
+    pressTimer = setTimeout(function(){
+      presses = 0; paintDots();
+      if(powerBtn) powerBtn.classList.remove("armed");
+    }, 2000);
+  }
+  function startCountdown(){
+    var n = 5;
+    stage.innerHTML =
+      '<p class="meta">Sending your alert in</p>' +
+      '<div class="countdown" id="cd" role="status">5</div>' +
+      '<button class="btn btn-ghost" id="cancelBtn">Cancel — I am okay</button>';
+    document.getElementById("cancelBtn").addEventListener("click", function(){
+      clearInterval(countTimer);
+      resetPanic();
+      toast("Alert cancelled. Nothing was sent.");
+    });
+    countTimer = setInterval(function(){
+      n--;
+      var cd = document.getElementById("cd");
+      if(cd) cd.textContent = String(n);
+      if(n <= 0){ clearInterval(countTimer); sendAlert(); }
+    }, 1000);
+  }
+  function sendAlert(){
+    var names = state.circle.map(function(c){ return c.name; });
+    var list = names.length
+      ? names.map(function(n){ return '<li><span class="tick">\u2713</span> ' + esc(n) + ' — notified</li>'; }).join("")
+      : '<li class="meta">Your circle is empty. Add someone so this alert reaches a person.</li>';
+    var t = new Date();
+    stage.innerHTML =
+      '<div class="sent-box">' +
+        '<h3>Your alert was sent</h3>' +
+        '<ul class="sent-list">' + list + '</ul>' +
+        '<p class="meta" style="margin:0 0 4px;">Location shared: Daku Road, KwaZakhele, Gqeberha</p>' +
+        '<p class="meta" style="margin:0 0 14px;">Sent at ' + t.getHours() + ":" + String(t.getMinutes()).padStart(2,"0") + '</p>' +
+        '<button class="btn btn-ghost" id="againBtn">Back to the button</button>' +
+      '</div>';
+    document.getElementById("againBtn").addEventListener("click", resetPanic);
+    toast(names.length ? "Alert sent to " + names.length + " " + (names.length===1?"person":"people") : "Alert triggered, but your circle is empty");
+  }
+  powerBtn.addEventListener("click", onPress);
+
+  /* ---------- circle ---------- */
+  function esc(s){
+    return String(s).replace(/[&<>"']/g, function(c){
+      return ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;" })[c];
+    });
+  }
+  var circleList = document.getElementById("circleList");
+  function renderCircle(){
+    if(!state.circle.length){
+      circleList.innerHTML = '<div class="empty">Your circle is empty. Add one person you would actually want to hear from at 2am.</div>';
+      return;
+    }
+    circleList.innerHTML = state.circle.map(function(c,i){
+      var fresh = c.last && (Date.now()-c.last) < 24*3600*1000;
+      return '<div class="row">' +
+        '<span class="avatar" aria-hidden="true">' + esc(c.name.trim().charAt(0).toUpperCase()) + '</span>' +
+        '<span class="row-main"><strong>' + esc(c.name) + '</strong><span class="meta">' + ago(c.last) + '</span></span>' +
+        '<span class="status ' + (fresh?"fresh":"") + '" aria-hidden="true"></span>' +
+        '<span class="row-actions">' +
+          '<button class="mini" data-check="' + i + '">Check in</button>' +
+          '<button class="mini danger" data-remove="' + i + '">Remove</button>' +
+        '</span></div>';
+    }).join("");
+  }
+  circleList.addEventListener("click", function(e){
+    var b = e.target.closest("button");
+    if(!b) return;
+    if(b.dataset.check !== undefined){
+      var i = +b.dataset.check;
+      state.circle[i].last = Date.now();
+      save(); renderCircle();
+      toast("Checked in with " + state.circle[i].name);
+    }
+    if(b.dataset.remove !== undefined){
+      var j = +b.dataset.remove;
+      var gone = state.circle[j].name;
+      state.circle.splice(j,1);
+      save(); renderCircle();
+      toast(gone + " removed from your circle");
+    }
+  });
+  document.getElementById("addForm").addEventListener("submit", function(e){
+    e.preventDefault();
+    var inp = document.getElementById("newName");
+    var name = inp.value.trim();
+    if(!name) return;
+    if(state.circle.length >= 8){ toast("Keep it small — eight is the maximum."); return; }
+    state.circle.push({ name:name, last:null });
+    inp.value = "";
+    save(); renderCircle();
+    toast(name + " added to your circle");
+  });
+
+  /* ---------- resources ---------- */
+  var RES = [
+    { n:"GBV Command Centre", d:"24 hours, free, trained counsellors", tel:"0800428428", label:"0800 428 428",
+      i:'<circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/><path d="M4.9 4.9l3.5 3.5M15.6 15.6l3.5 3.5"/>' },
+    { n:"SAPS emergency", d:"Immediate danger, police response", tel:"10111", label:"10111",
+      i:'<path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6z"/>' },
+    { n:"Lifeline South Africa", d:"Counselling and trauma support", tel:"0861322322", label:"0861 322 322",
+      i:'<path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l8.8 8.8 8.8-8.8a5.5 5.5 0 0 0 0-7.8z"/>' },
+    { n:"Legal Aid South Africa", d:"Protection orders and free legal advice", tel:"0800110110", label:"0800 110 110",
+      i:'<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/>' },
+    { n:"Childline South Africa", d:"For anyone under 18, or worried about a child", tel:"116", label:"116",
+      i:'<path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/>' },
+    { n:"SADAG mental health line", d:"If you need to talk to someone tonight", tel:"0800567567", label:"0800 567 567",
+      i:'<path d="M21 11.5a8.4 8.4 0 0 1-9 8.5 8.4 8.4 0 0 1-3.8-.9L3 21l1.9-5.2A8.4 8.4 0 0 1 4 11.5 8.4 8.4 0 0 1 12.5 3 8.4 8.4 0 0 1 21 11.5z"/>' }
+  ];
+  document.getElementById("resList").innerHTML = RES.map(function(r){
+    return '<div class="res">' +
+      '<span class="res-ico" aria-hidden="true"><svg viewBox="0 0 24 24">' + r.i + '</svg></span>' +
+      '<span class="row-main"><strong>' + r.n + '</strong><span class="meta">' + r.d + '</span></span>' +
+      '<a class="call" href="tel:' + r.tel + '">' + r.label + '</a>' +
+    '</div>';
+  }).join("");
+
+  /* ---------- awareness ---------- */
+  var SIGNS = [
+    "They check your phone, your messages, or who you have been with.",
+    "You find yourself seeing friends and family less than you used to.",
+    "Jealousy is explained as proof of how much they care.",
+    "You change what you say or wear to avoid setting them off.",
+    "Money is controlled by them, or you have to account for what you spend.",
+    "After a fight, somehow it ends up being your fault.",
+    "They threaten to leave, to hurt themselves, or to hurt you, to end an argument.",
+    "You have been pushed, grabbed, blocked from leaving a room, or held down.",
+    "They decide where you go and who you go with.",
+    "Sex has happened when you did not want it to.",
+    "You feel relief, not disappointment, when plans with them get cancelled.",
+    "Friends or family have said they are worried about you."
+  ];
+  var signList = document.getElementById("signList");
+  signList.innerHTML = SIGNS.map(function(s,i){
+    var on = state.signs.indexOf(i) > -1;
+    return '<label class="sign' + (on?" checked":"") + '" data-i="' + i + '">' +
+      '<input type="checkbox"' + (on?" checked":"") + '><span>' + s + '</span></label>';
+  }).join("");
+
+  function renderTally(){
+    var n = state.signs.length;
+    var t = document.getElementById("tally");
+    var msg;
+    if(n === 0) msg = "<p>Nothing ticked yet. Read through the list at your own pace.</p>";
+    else if(n <= 2) msg = "<p>You have ticked <strong>" + n + "</strong>. Even one of these is worth taking seriously — it does not have to get worse before it counts.</p>";
+    else msg = "<p>You have ticked <strong>" + n + "</strong>. That is a pattern, not a bad week. Talking to someone on the Resources page is free, and you do not have to have decided anything yet.</p>";
+    t.innerHTML = msg + (n ? '<button class="mini" id="clearSigns" style="margin-top:12px;background:transparent;color:#CFE4E2;border-color:rgba(255,255,255,.3);">Clear my ticks</button>' : "");
+    var c = document.getElementById("clearSigns");
+    if(c) c.addEventListener("click", function(){
+      state.signs = []; save();
+      signList.querySelectorAll("input").forEach(function(x){ x.checked = false; });
+      signList.querySelectorAll(".sign").forEach(function(x){ x.classList.remove("checked"); });
+      renderTally();
+      toast("Cleared. Nothing was kept.");
+    });
+  }
+  signList.addEventListener("change", function(e){
+    var lab = e.target.closest(".sign");
+    if(!lab) return;
+    var i = +lab.dataset.i;
+    var at = state.signs.indexOf(i);
+    if(e.target.checked && at === -1) state.signs.push(i);
+    else if(!e.target.checked && at > -1) state.signs.splice(at,1);
+    lab.classList.toggle("checked", e.target.checked);
+    save(); renderTally();
+  });
+
+  /* ---------- stories ---------- */
+  var storyList = document.getElementById("storyList");
+  function renderStories(){
+    if(!state.stories.length){
+      storyList.innerHTML = '<div class="empty">Nothing here yet. If you post, yours will be the first.</div>';
+      return;
+    }
+    storyList.innerHTML = state.stories.map(function(s,i){
+      var d = new Date(s.when);
+      return '<article class="story">' +
+        '<p>' + esc(s.text) + '</p>' +
+        '<footer><span>Anonymous &middot; ' + d.toLocaleDateString("en-ZA",{day:"numeric",month:"short"}) + '</span>' +
+        '<button class="heard' + (s.mine?" on":"") + '" data-heard="' + i + '">I hear you &middot; ' + (s.heard||0) + '</button></footer>' +
+      '</article>';
+    }).join("");
+  }
+  storyList.addEventListener("click", function(e){
+    var b = e.target.closest("[data-heard]");
+    if(!b) return;
+    var i = +b.dataset.heard;
+    var s = state.stories[i];
+    if(s.mine){ s.heard = Math.max(0,(s.heard||0)-1); s.mine = false; }
+    else { s.heard = (s.heard||0)+1; s.mine = true; }
+    save(); renderStories();
+  });
+  document.getElementById("storyForm").addEventListener("submit", function(e){
+    e.preventDefault();
+    var ta = document.getElementById("storyText");
+    var v = ta.value.trim();
+    if(!v){ toast("Write something first, even one line."); return; }
+    state.stories.unshift({ text:v, when:Date.now(), heard:0 });
+    ta.value = "";
+    document.getElementById("storySubmit").disabled = true;
+    save(); renderStories();
+    toast("Posted anonymously. Thank you for saying it.");
+  });
+
+  document.getElementById("storyText").addEventListener("input", function(){
+    document.getElementById("storySubmit").disabled = !this.value.trim();
+  });
+
+  /* pane switch */
+  var pw = document.getElementById("pillWrite"), pt = document.getElementById("pillTalk");
+  function pane(write){
+    pw.setAttribute("aria-pressed", write?"true":"false");
+    pt.setAttribute("aria-pressed", write?"false":"true");
+    document.getElementById("paneWrite").hidden = !write;
+    document.getElementById("paneTalk").hidden = write;
+  }
+  pw.addEventListener("click", function(){ pane(true); });
+  pt.addEventListener("click", function(){ pane(false); });
+
+  /* ---------- listener chat (scripted prototype) ---------- */
+  var msgs = document.getElementById("msgs");
+  function bubble(text, who){
+    var d = document.createElement("div");
+    d.className = "msg " + who;
+    d.textContent = text;
+    msgs.appendChild(d);
+    msgs.scrollTop = msgs.scrollHeight;
+  }
+  bubble("I am here, and there is no rush. You can start anywhere — or say nothing much at all and that is fine too.", "them");
+
+  var GENERIC = [
+    "Thank you for telling me that. You did not have to.",
+    "That sounds heavy to have been carrying on your own.",
+    "You are allowed to feel exactly how you feel about it.",
+    "Take your time. I am not going anywhere.",
+    "None of what you have described is something you brought on yourself."
+  ];
+  var gi = 0;
+  function reply(userText){
+    var t = userText.toLowerCase();
+    var out;
+    if(/scared|afraid|frightened|terrified|unsafe/.test(t)){
+      out = "Being scared is information, not weakness. If you are in danger right now, 10111 is the fastest route — it is on the Resources page. If you are safe for the moment, we can keep talking.";
+    } else if(/hit|hurt|beat|choke|forced|assault|rape/.test(t)){
+      out = "I am sorry that happened to you. That was not your fault, whatever was said afterwards. The GBV Command Centre on 0800 428 428 is free and staffed all night if you want to speak to a trained person.";
+    } else if(/my fault|blame|deserve|stupid|should have/.test(t)){
+      out = "You are describing something someone else chose to do. The responsibility for it sits with them, not with what you said or wore or did not notice in time.";
+    } else if(/alone|nobody|no one|lonely/.test(t)){
+      out = "Feeling alone in this is very common, and it is also usually not true for as long as it feels true. Is there one person you would tell first, if telling was easy?";
+    } else if(/leave|leaving|break up|get out/.test(t)){
+      out = "Leaving is often the most dangerous moment, which is why planning it with someone helps. Legal Aid on 0800 110 110 can talk you through a protection order for free, with no obligation to use it.";
+    } else if(/thank|thanks|better/.test(t)){
+      out = "You did the hard part by saying it out loud. Whenever you are ready, the numbers under Resources are real people who do this every day.";
+    } else {
+      out = GENERIC[gi % GENERIC.length]; gi++;
+    }
+    setTimeout(function(){ bubble(out, "them"); }, 650);
+  }
+  document.getElementById("chatForm").addEventListener("submit", function(e){
+    e.preventDefault();
+    var inp = document.getElementById("chatInput");
+    var v = inp.value.trim();
+    if(!v) return;
+    bubble(v, "me");
+    inp.value = "";
+    reply(v);
+  });
+
+  /* ---------- account (sidebar) ---------- */
+  function renderAccount(){
+    var el = document.getElementById("sideAccount");
+    if(state.user){
+      el.innerHTML = '<div class="account-chip">' +
+        '<span class="avatar" aria-hidden="true">' + esc(state.user.name.trim().charAt(0).toUpperCase()) + '</span>' +
+        '<span class="account-info"><strong>' + esc(state.user.name) + '</strong><span>' + esc(state.user.email) + '</span></span>' +
+        '<button class="account-out" id="signOutBtn">Sign out</button>' +
+      '</div>';
+      var so = document.getElementById("signOutBtn");
+      if(so) so.addEventListener("click", function(){
+        state.user = null; save(); renderAccount();
+        toast("Signed out");
+      });
+    } else {
+      el.innerHTML = '<div class="auth-btns">' +
+        '<button class="btn btn-ghost" id="openSignIn">Sign in</button>' +
+        '<button class="btn btn-primary" id="openSignUp">Sign up</button>' +
+      '</div>';
+      document.getElementById("openSignIn").addEventListener("click", function(){ openAuth("in"); });
+      document.getElementById("openSignUp").addEventListener("click", function(){ openAuth("up"); });
+    }
+  }
+
+  /* ---------- auth modal (prototype only — nothing leaves the browser) ---------- */
+  var authScrim = document.getElementById("authScrim");
+  var authTabIn = document.getElementById("authTabIn");
+  var authTabUp = document.getElementById("authTabUp");
+  var authTitle = document.getElementById("authTitle");
+  var authSub = document.getElementById("authSub");
+  var authNameWrap = document.getElementById("authNameWrap");
+  var authName = document.getElementById("authName");
+  var authSubmit = document.getElementById("authSubmit");
+  var googleLabel = document.getElementById("googleLabel");
+  var authMode = "in";
+
+  function setAuthMode(mode){
+    authMode = mode;
+    var up = mode === "up";
+    authTabIn.setAttribute("aria-selected", up ? "false" : "true");
+    authTabUp.setAttribute("aria-selected", up ? "true" : "false");
+    authNameWrap.hidden = !up;
+    authTitle.textContent = up ? "Create an account" : "Welcome back";
+    authSub.textContent = up
+      ? "Optional — lets you sync your circle and check-ins if you use SafeCircle on more than one device. You can pick any name."
+      : "Sign in to sync your circle and check-ins across devices. Nothing here is required to use the panic alert or resources.";
+    authSubmit.textContent = up ? "Create account" : "Sign in";
+    googleLabel.textContent = up ? "Sign up with Google" : "Continue with Google";
+  }
+  authTabIn.addEventListener("click", function(){ setAuthMode("in"); });
+  authTabUp.addEventListener("click", function(){ setAuthMode("up"); });
+
+  function openAuth(mode){
+    setAuthMode(mode || "in");
+    authScrim.classList.add("on");
+    closeSidebar();
+    setTimeout(function(){ document.getElementById("authEmail").focus(); }, 10);
+  }
+  function closeAuth(){
+    authScrim.classList.remove("on");
+    document.getElementById("authForm").reset();
+  }
+  document.getElementById("authClose").addEventListener("click", closeAuth);
+  authScrim.addEventListener("click", function(e){ if(e.target === authScrim) closeAuth(); });
+  document.addEventListener("keydown", function(e){
+    if(e.key === "Escape" && authScrim.classList.contains("on")) closeAuth();
+  });
+
+  document.getElementById("authForm").addEventListener("submit", function(e){
+    e.preventDefault();
+    var email = document.getElementById("authEmail").value.trim();
+    if(!email) return;
+    var name = authMode === "up"
+      ? (authName.value.trim() || email.split("@")[0])
+      : (state.user ? state.user.name : email.split("@")[0]);
+    state.user = { name:name, email:email, provider:"email" };
+    save(); renderAccount(); closeAuth();
+    toast(authMode === "up" ? "Account created" : "Signed in");
+  });
+
+  document.getElementById("googleBtn").addEventListener("click", function(){
+    var btn = this;
+    btn.classList.add("loading");
+    var was = googleLabel.textContent;
+    googleLabel.textContent = "Connecting to Google\u2026";
+    setTimeout(function(){
+      state.user = { name:"Uviwe B.", email:"uviwe.booi@gmail.com", provider:"google" };
+      save(); renderAccount(); closeAuth();
+      btn.classList.remove("loading");
+      googleLabel.textContent = was;
+      toast("Signed in with Google");
+    }, 900);
+  });
+
+  /* ---------- boot ---------- */
+  load();
+  renderCircle();
+  renderStories();
+  renderTally();
+  renderAccount();
+})();
+</script>
+</body>
+</html>
